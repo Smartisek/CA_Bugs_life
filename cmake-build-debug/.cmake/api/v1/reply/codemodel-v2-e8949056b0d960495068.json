@@ -1,0 +1,60 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"jsonFile" : "directory-.-Debug-d0094a50bb2071803777.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.27"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "CA_Bugs_life",
+					"targetIndexes" : 
+					[
+						0
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "CA_Bugs_life::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-CA_Bugs_life-Debug-a8bbbba38be362e0ec07.json",
+					"name" : "CA_Bugs_life",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "C:/Users/domal/OneDrive/Plocha/DKIT/SecondYear/C++/CA_Bugs_life/cmake-build-debug",
+		"source" : "C:/Users/domal/OneDrive/Plocha/DKIT/SecondYear/C++/CA_Bugs_life"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 6
+	}
+}
