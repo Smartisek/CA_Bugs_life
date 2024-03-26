@@ -911,7 +911,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "CA_Bugs_life"
+			"value" : "sfml_002"
 		},
 		{
 			"name" : "CMAKE_RANLIB",
@@ -1306,6 +1306,130 @@
 			"value" : "FALSE"
 		},
 		{
+			"name" : "FLAC_LIB",
+			"properties" : 
+			[
+				{
+					"name" : "ADVANCED",
+					"value" : "1"
+				},
+				{
+					"name" : "HELPSTRING",
+					"value" : "Path to a library."
+				}
+			],
+			"type" : "FILEPATH",
+			"value" : "C:/SFML-2.6.1/lib/libFLAC.a"
+		},
+		{
+			"name" : "FreeType_LIB",
+			"properties" : 
+			[
+				{
+					"name" : "ADVANCED",
+					"value" : "1"
+				},
+				{
+					"name" : "HELPSTRING",
+					"value" : "Path to a library."
+				}
+			],
+			"type" : "FILEPATH",
+			"value" : "C:/SFML-2.6.1/lib/libfreetype.a"
+		},
+		{
+			"name" : "Ogg_LIB",
+			"properties" : 
+			[
+				{
+					"name" : "ADVANCED",
+					"value" : "1"
+				},
+				{
+					"name" : "HELPSTRING",
+					"value" : "Path to a library."
+				}
+			],
+			"type" : "FILEPATH",
+			"value" : "C:/SFML-2.6.1/lib/libogg.a"
+		},
+		{
+			"name" : "OpenAL_LIB",
+			"properties" : 
+			[
+				{
+					"name" : "ADVANCED",
+					"value" : "1"
+				},
+				{
+					"name" : "HELPSTRING",
+					"value" : "Path to a library."
+				}
+			],
+			"type" : "FILEPATH",
+			"value" : "C:/SFML-2.6.1/lib/libopenal32.a"
+		},
+		{
+			"name" : "SFML_DOC_DIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Path to a file."
+				}
+			],
+			"type" : "PATH",
+			"value" : "SFML_DOC_DIR-NOTFOUND"
+		},
+		{
+			"name" : "VorbisEnc_LIB",
+			"properties" : 
+			[
+				{
+					"name" : "ADVANCED",
+					"value" : "1"
+				},
+				{
+					"name" : "HELPSTRING",
+					"value" : "Path to a library."
+				}
+			],
+			"type" : "FILEPATH",
+			"value" : "C:/SFML-2.6.1/lib/libvorbisenc.a"
+		},
+		{
+			"name" : "VorbisFile_LIB",
+			"properties" : 
+			[
+				{
+					"name" : "ADVANCED",
+					"value" : "1"
+				},
+				{
+					"name" : "HELPSTRING",
+					"value" : "Path to a library."
+				}
+			],
+			"type" : "FILEPATH",
+			"value" : "C:/SFML-2.6.1/lib/libvorbisfile.a"
+		},
+		{
+			"name" : "Vorbis_LIB",
+			"properties" : 
+			[
+				{
+					"name" : "ADVANCED",
+					"value" : "1"
+				},
+				{
+					"name" : "HELPSTRING",
+					"value" : "Path to a library."
+				}
+			],
+			"type" : "FILEPATH",
+			"value" : "C:/SFML-2.6.1/lib/libvorbis.a"
+		},
+		{
 			"name" : "_CMAKE_LINKER_PUSHPOP_STATE_SUPPORTED",
 			"properties" : 
 			[
@@ -1316,6 +1440,42 @@
 			],
 			"type" : "INTERNAL",
 			"value" : "TRUE"
+		},
+		{
+			"name" : "sfml_002_BINARY_DIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Value Computed by CMake"
+				}
+			],
+			"type" : "STATIC",
+			"value" : "C:/Users/domal/OneDrive/Plocha/DKIT/SecondYear/C++/CA_Bugs_life/cmake-build-debug"
+		},
+		{
+			"name" : "sfml_002_IS_TOP_LEVEL",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Value Computed by CMake"
+				}
+			],
+			"type" : "STATIC",
+			"value" : "ON"
+		},
+		{
+			"name" : "sfml_002_SOURCE_DIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Value Computed by CMake"
+				}
+			],
+			"type" : "STATIC",
+			"value" : "C:/Users/domal/OneDrive/Plocha/DKIT/SecondYear/C++/CA_Bugs_life"
 		}
 	],
 	"kind" : "cache",
