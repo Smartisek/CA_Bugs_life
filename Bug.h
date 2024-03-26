@@ -20,7 +20,6 @@ enum class Direction{
 
 class Bug {
 private:
-    Bug(int id, int x, int y, Direction direction, int size);
 
     int id;
     pair<int, int> position;
@@ -30,7 +29,11 @@ private:
     list<pair<int, int>> path;
 
 public:
-
+    Bug(int id, int x, int y, Direction direction, int size);
+    int getId() const;
+    pair<int,int> getPosition() const;
+    Direction getDirection() const;
+//    virtual void move () = 0;
 };
 
 
