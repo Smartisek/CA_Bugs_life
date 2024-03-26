@@ -33,7 +33,7 @@ public:
     int getId() const;
     pair<int,int> getPosition() const;
     Direction getDirection() const;
-//    virtual void move () = 0;
+    virtual void move () = 0;
 };
 
 
