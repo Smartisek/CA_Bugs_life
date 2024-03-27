@@ -3,9 +3,6 @@
 //
 
 #include "Bug.h"
-Bug::Bug(int id, int x, int y, Direction direction, int size)
-    : id(id), position(x,y), direction(direction), size(size), alive(true){
-}
 
 int Bug::getId() const{
     return id;

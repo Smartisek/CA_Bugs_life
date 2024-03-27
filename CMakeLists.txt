@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.21)
-project(sfml_002)
+project(CA_bugs_life)
 
 set(CMAKE_CXX_STANDARD 11)
 

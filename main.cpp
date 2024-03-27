@@ -2,43 +2,45 @@
 #include <iostream>
 #include <sstream>
 #include "Bug.h"
+#include "Crawler.h"
 #include "vector"
 #include "fstream"
 using namespace std;
 using namespace sf;
 
 int main() {
+    vector<Bug*> bugs;
     ifstream bugFile("bugs.txt");
     if(bugFile.is_open()){
         string line;
-        while(getline(bugFile, line)){
+
+
+        while(getline(bugFile, line)) {
             stringstream ss(line);
-            string item;
-            vector<string> data;
-            while(getline(ss,item, ';')){
-                data.push_back(item);
-            }
-            for(int i=0; i < data.size(); i++){
-                cout << data[i] << endl;
+            string type;
+            int id, x, y, direction, size;
+            char delim;
+
+            cout << "Error" << endl;
+
+            if(!(ss >> type >> delim >> id >> delim >> x >> delim >> y >> delim >> direction >> size)){
+            break;
+               }
+
+            cout << "Read: " << type << ";" << id << ";" << x << ";" << y << ";" << direction << ";" << size << endl;
+
+            if(type == "C"){
+                bugs.push_back(new Crawler(id, x, y, static_cast<Direction>(direction), size));
+                cout << " Inside";
+                }
             }
         }
-        bugFile.close();
-    } else {
-        cout << "File could not be opened";
-    }
 
-//    string filename = "bugs.txt";
-//    ifstream inFile;
-//    inFile.open(filename);
-//
-//    if(inFile.fail()){
-//        cout << "Error" << endl;
-//    }
-//    char c;
-//    while(inFile.get(c)){
-//        cout << c;
-//    }
-//    inFile.close();
+
+
+
+//Crawler c1(5, 2, 5, static_cast<Direction>(4), 5);
+//Bug c2(1, 5, 5, static_cast<Direction>(1), 6);
     return 0;
 }
 

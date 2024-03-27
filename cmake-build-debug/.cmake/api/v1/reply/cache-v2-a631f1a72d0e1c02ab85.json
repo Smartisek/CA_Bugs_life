@@ -38,6 +38,42 @@
 			"value" : "C:/Users/domal/OneDrive/Plocha/DKIT/SecondYear/C++/CA_Bugs_life"
 		},
 		{
+			"name" : "CA_bugs_life_BINARY_DIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Value Computed by CMake"
+				}
+			],
+			"type" : "STATIC",
+			"value" : "C:/Users/domal/OneDrive/Plocha/DKIT/SecondYear/C++/CA_Bugs_life/cmake-build-debug"
+		},
+		{
+			"name" : "CA_bugs_life_IS_TOP_LEVEL",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Value Computed by CMake"
+				}
+			],
+			"type" : "STATIC",
+			"value" : "ON"
+		},
+		{
+			"name" : "CA_bugs_life_SOURCE_DIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Value Computed by CMake"
+				}
+			],
+			"type" : "STATIC",
+			"value" : "C:/Users/domal/OneDrive/Plocha/DKIT/SecondYear/C++/CA_Bugs_life"
+		},
+		{
 			"name" : "CMAKE_ADDR2LINE",
 			"properties" : 
 			[
@@ -911,7 +947,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "sfml_002"
+			"value" : "CA_bugs_life"
 		},
 		{
 			"name" : "CMAKE_RANLIB",
