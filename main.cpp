@@ -44,10 +44,15 @@ int main() {
             bugs.push_back(new Hopper(id, x, y, static_cast<Direction>(direction), size, hopLength));
         }
     }
-    cout << bugs.size();
+    cout << bugs.size() << endl;
         bugFile.close();
 
+        for(Bug* bug : bugs){
+            delete bug;
+        }
+        bugs.clear();
 
+        cout << bugs.size();
     return 0;
 }
 
