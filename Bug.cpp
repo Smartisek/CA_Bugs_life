@@ -15,3 +15,5 @@ pair<int,int> Bug::getPosition() const{
 Direction Bug::getDirection() const{
     return direction;
 }
+
+

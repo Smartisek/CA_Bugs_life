@@ -3,3 +3,6 @@
 //
 
 #include "Hopper.h"
+int Hopper::getHopLength() const{
+    return hopLength;
+};

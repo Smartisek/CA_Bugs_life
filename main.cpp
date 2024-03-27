@@ -3,6 +3,7 @@
 #include <sstream>
 #include "Bug.h"
 #include "Crawler.h"
+#include "Hopper.h"
 #include "vector"
 #include "fstream"
 using namespace std;
@@ -15,8 +16,8 @@ int main() {
         cout << "File failed to open" << endl;
     }
     string line;
-    string type, idT, xT, yT, directionT, sizeT;
-    int id, x, y, direction, size;
+    string type, idT, xT, yT, directionT, sizeT, hopLengthT;
+    int id, x, y, direction, size, hopLength;
 
     while(getline(bugFile, line)) {
         stringstream ss(line);
@@ -31,38 +32,20 @@ int main() {
         direction = stoi(directionT);
         getline(ss, sizeT, ';');
         size = stoi(sizeT);
-        cout << "Read: " << type << ";" << id << ";" << x << ";" << y << ";" << direction << ";" << size << endl;
+        hopLength =0;
+        if(getline(ss, hopLengthT, ';') && !hopLengthT.empty()){
+            hopLength = stoi(hopLengthT);
+        }
+
+        cout << "Read: " << type << ";" << id << ";" << x << ";" << y << ";" << direction << ";" << size << ";" << hopLength <<  endl;
         if (type == "C") {
             bugs.push_back(new Crawler(id, x, y, static_cast<Direction>(direction), size));
+        } else if(type == "H"){
+            bugs.push_back(new Hopper(id, x, y, static_cast<Direction>(direction), size, hopLength));
         }
-        cout << bugs.size();
     }
+    cout << bugs.size();
         bugFile.close();
-
-//    if(bugFile.is_open()){
-//        string line;
-//
-//
-//        while(getline(bugFile, line)) {
-//            stringstream ss(line);
-//            string type;
-//            int id, x, y, direction, size;
-//            char delim;
-//
-//            cout << "Error" << endl;
-//
-//            if(!(ss >> type >> delim >> id >> delim >> x >> delim >> y >> delim >> direction >> size)){
-//            break;
-//               }
-//
-//            cout << "Read: " << type << ";" << id << ";" << x << ";" << y << ";" << direction << ";" << size << endl;
-//
-//            if(type == "C"){
-//                bugs.push_back(new Crawler(id, x, y, static_cast<Direction>(direction), size));
-//                cout << " Inside";
-//                }
-//            }
-//        }
 
 
     return 0;
@@ -97,3 +80,6 @@ int main() {
 //        window.display();
 //    }
 
+
+
+// ***** https://www.youtube.com/watch?v=_IzYGiuX8QM
