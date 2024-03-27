@@ -11,36 +11,60 @@ using namespace sf;
 int main() {
     vector<Bug*> bugs;
     ifstream bugFile("bugs.txt");
-    if(bugFile.is_open()){
-        string line;
+    if(!bugFile.is_open()){
+        cout << "File failed to open" << endl;
+    }
+    string line;
+    string type, idT, xT, yT, directionT, sizeT;
+    int id, x, y, direction, size;
 
-
-        while(getline(bugFile, line)) {
-            stringstream ss(line);
-            string type;
-            int id, x, y, direction, size;
-            char delim;
-
-            cout << "Error" << endl;
-
-            if(!(ss >> type >> delim >> id >> delim >> x >> delim >> y >> delim >> direction >> size)){
-            break;
-               }
-
-            cout << "Read: " << type << ";" << id << ";" << x << ";" << y << ";" << direction << ";" << size << endl;
-
-            if(type == "C"){
-                bugs.push_back(new Crawler(id, x, y, static_cast<Direction>(direction), size));
-                cout << " Inside";
-                }
-            }
+    while(getline(bugFile, line)) {
+        stringstream ss(line);
+        getline(ss, type, ';');
+        getline(ss, idT, ';');
+        id = stoi(idT);
+        getline(ss, xT, ';');
+        x = stoi(xT);
+        getline(ss, yT, ';');
+        y = stoi(yT);
+        getline(ss, directionT, ';');
+        direction = stoi(directionT);
+        getline(ss, sizeT, ';');
+        size = stoi(sizeT);
+        cout << "Read: " << type << ";" << id << ";" << x << ";" << y << ";" << direction << ";" << size << endl;
+        if (type == "C") {
+            bugs.push_back(new Crawler(id, x, y, static_cast<Direction>(direction), size));
         }
+        cout << bugs.size();
+    }
+        bugFile.close();
+
+//    if(bugFile.is_open()){
+//        string line;
+//
+//
+//        while(getline(bugFile, line)) {
+//            stringstream ss(line);
+//            string type;
+//            int id, x, y, direction, size;
+//            char delim;
+//
+//            cout << "Error" << endl;
+//
+//            if(!(ss >> type >> delim >> id >> delim >> x >> delim >> y >> delim >> direction >> size)){
+//            break;
+//               }
+//
+//            cout << "Read: " << type << ";" << id << ";" << x << ";" << y << ";" << direction << ";" << size << endl;
+//
+//            if(type == "C"){
+//                bugs.push_back(new Crawler(id, x, y, static_cast<Direction>(direction), size));
+//                cout << " Inside";
+//                }
+//            }
+//        }
 
 
-
-
-//Crawler c1(5, 2, 5, static_cast<Direction>(4), 5);
-//Bug c2(1, 5, 5, static_cast<Direction>(1), 6);
     return 0;
 }
 
