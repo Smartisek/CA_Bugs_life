@@ -17,7 +17,7 @@ public:
     void move();
     int getHopLength() const;
     string getType() const override{
-        return "Crawler";
+        return "Hopper " + to_string(getHopLength());
     }
 };
 

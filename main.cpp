@@ -37,7 +37,7 @@ int main() {
             hopLength = stoi(hopLengthT);
         }
 
-        cout << "Read: " << type << ";" << id << ";" << x << ";" << y << ";" << direction << ";" << size << ";" << hopLength <<  endl;
+//        cout << "Read: " << type << ";" << id << ";" << x << ";" << y << ";" << direction << ";" << size << ";" << hopLength <<  endl;
         if (type == "C") {
             bugs.push_back(new Crawler(id, x, y, static_cast<Direction>(direction), size));
         } else if(type == "H"){
@@ -47,15 +47,17 @@ int main() {
     cout << bugs.size() << endl;
         bugFile.close();
 
-        cout << bugs.size() << endl;
-        Direction getDir = bugs[1]->getDirection();
-        string printDir = bugs[1]->directionToString(getDir);
-        cout << printDir;
-        pair<int, int> position = bugs[1]->getPosition();
-        cout << bugs[1]->positionToString(position);
-        cout << bugs[0]->getSize();
-        cout << bugs[0]->getStatus() << endl;
-        cout << bugs[0]->printBug();
+        for(int i=0; i<bugs.size(); i++){
+           cout << bugs[i]->printBug() << endl;
+        }
+//        Direction getDir = bugs[1]->getDirection();
+//        string printDir = bugs[1]->directionToString(getDir);
+//        cout << printDir;
+//        pair<int, int> position = bugs[1]->getPosition();
+//        cout << bugs[1]->positionToString(position);
+//        cout << bugs[0]->getSize();
+//        cout << bugs[0]->getStatus() << endl;
+//        cout << bugs[0]->printBug();
 
     for(Bug* bug : bugs){
         delete bug;
