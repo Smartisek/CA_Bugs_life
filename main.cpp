@@ -58,6 +58,8 @@ int main() {
         cout << printDir;
         pair<int, int> position = bugs[1]->getPosition();
         cout << bugs[1]->positionToString(position);
+        cout << bugs[0]->getSize();
+        cout << bugs[0]->getStatus();
 
     return 0;
 }

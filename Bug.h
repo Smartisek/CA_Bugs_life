@@ -34,6 +34,8 @@ public:
     int getId() const;
     pair<int,int> getPosition() const;
     Direction getDirection() const;
+    int getSize() const;
+    string getStatus();
     string directionToString(Direction direction);
     string positionToString(pair<int,int>);
 

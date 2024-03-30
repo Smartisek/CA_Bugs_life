@@ -12,6 +12,18 @@ pair<int,int> Bug::getPosition() const{
     return position;
 }
 
+int Bug::getSize() const {
+    return size;
+}
+
+string Bug::getStatus() {
+    if(alive == 1){
+        return "Alive";
+    } else {
+        return "Dead";
+    }
+}
+
 string Bug::positionToString(pair<int,int> position){
     return "(" + to_string(position.first) + "," + to_string(position.second) + ")";
 }
