@@ -17,6 +17,15 @@ enum class Direction{
     WEST = 4
 };
 
+//string directionToString(Direction direction){
+//    switch (direction) {
+//        case Direction::NORTH: return "North";
+//        case Direction::EAST: return "East";
+//        case Direction::SOUTH: return "South";
+//        case Direction::WEST: return "West";
+//        default: return "Unknown";
+//    }
+//}
 
 class Bug {
 private:
@@ -34,9 +43,9 @@ public:
     int getId() const;
     pair<int,int> getPosition() const;
     Direction getDirection() const;
+    string directionToString(Direction direction);
 
 //    virtual void move () = 0;
 };
-
 
 #endif //SFML_002_BUG_H

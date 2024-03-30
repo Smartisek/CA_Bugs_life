@@ -52,7 +52,10 @@ int main() {
         }
         bugs.clear();
 
-        cout << bugs.size();
+        cout << bugs.size() << endl;
+        Direction getDir = bugs[0]->getDirection();
+        string printDir = bugs[0]->directionToString(getDir);
+        cout << printDir;
     return 0;
 }
 

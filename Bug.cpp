@@ -16,4 +16,17 @@ Direction Bug::getDirection() const{
     return direction;
 }
 
+string Bug::directionToString(Direction direction){
+    switch (direction) {
+        case Direction::NORTH: return "North";
+        case Direction::EAST: return "East";
+        case Direction::SOUTH: return "South";
+        case Direction::WEST: return "West";
+        default: return "Unknown";
+    }
+}
+
+
+
+
 
