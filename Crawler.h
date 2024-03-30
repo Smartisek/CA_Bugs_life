@@ -11,7 +11,9 @@ class Crawler : public Bug{
 
 public:
 Crawler(int id, int x, int y, Direction direction, int size) : Bug(id, x, y, direction, size){}
-
+string getType() const override{
+    return "Crawler";
+}
 
 };
 

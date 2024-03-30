@@ -38,6 +38,8 @@ public:
     string getStatus();
     string directionToString(Direction direction);
     string positionToString(pair<int,int>);
+    string printBug();
+    virtual string getType() const = 0;
 
 //    virtual void move () = 0;
 };

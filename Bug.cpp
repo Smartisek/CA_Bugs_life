@@ -32,6 +32,11 @@ Direction Bug::getDirection() const{
     return direction;
 }
 
+string Bug::printBug(){
+    return to_string(getId()) + " " + getType() + " " + positionToString(getPosition()) + " " + to_string(getSize()) +
+    " " + directionToString(getDirection()) + " " + getStatus();
+}
+
 string Bug::directionToString(Direction direction){
     switch (direction) {
         case Direction::NORTH: return "North";
@@ -41,6 +46,8 @@ string Bug::directionToString(Direction direction){
         default: return "Unknown";
     }
 }
+
+
 
 
 

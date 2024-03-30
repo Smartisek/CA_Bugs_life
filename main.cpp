@@ -47,11 +47,6 @@ int main() {
     cout << bugs.size() << endl;
         bugFile.close();
 
-        for(Bug* bug : bugs){
-            delete bug;
-        }
-        bugs.clear();
-
         cout << bugs.size() << endl;
         Direction getDir = bugs[1]->getDirection();
         string printDir = bugs[1]->directionToString(getDir);
@@ -59,7 +54,13 @@ int main() {
         pair<int, int> position = bugs[1]->getPosition();
         cout << bugs[1]->positionToString(position);
         cout << bugs[0]->getSize();
-        cout << bugs[0]->getStatus();
+        cout << bugs[0]->getStatus() << endl;
+        cout << bugs[0]->printBug();
+
+    for(Bug* bug : bugs){
+        delete bug;
+    }
+    bugs.clear();
 
     return 0;
 }
