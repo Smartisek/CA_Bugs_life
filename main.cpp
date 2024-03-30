@@ -53,9 +53,12 @@ int main() {
         bugs.clear();
 
         cout << bugs.size() << endl;
-        Direction getDir = bugs[0]->getDirection();
-        string printDir = bugs[0]->directionToString(getDir);
+        Direction getDir = bugs[1]->getDirection();
+        string printDir = bugs[1]->directionToString(getDir);
         cout << printDir;
+        pair<int, int> position = bugs[1]->getPosition();
+        cout << bugs[1]->positionToString(position);
+
     return 0;
 }
 

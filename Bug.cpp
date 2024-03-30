@@ -12,6 +12,10 @@ pair<int,int> Bug::getPosition() const{
     return position;
 }
 
+string Bug::positionToString(pair<int,int> position){
+    return "(" + to_string(position.first) + "," + to_string(position.second) + ")";
+}
+
 Direction Bug::getDirection() const{
     return direction;
 }
