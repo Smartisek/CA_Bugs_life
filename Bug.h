@@ -33,6 +33,7 @@ public:
     }
     int getId() const;
     pair<int,int> getPosition() const;
+    pair<int,int> setPosition(pair<int, int> positionNew);
     Direction getDirection() const;
     int getSize() const;
     string getStatus();
@@ -41,7 +42,7 @@ public:
     string printBug();
     virtual string getType() const = 0;
 
-//    virtual void move () = 0;
+    virtual void move () = 0;
 };
 
 #endif //SFML_002_BUG_H

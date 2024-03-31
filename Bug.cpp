@@ -38,6 +38,10 @@ string Bug::printBug(){
     " " + directionToString(getDirection()) + " " + getStatus();
 }
 
+pair<int,int> Bug::setPosition(pair<int, int> positionNew){
+    this -> position = positionNew;
+}
+
 string Bug::directionToString(Direction direction){
 //    https://stackoverflow.com/questions/5093460/how-to-convert-an-enum-type-variable-to-a-string
     switch (direction) {

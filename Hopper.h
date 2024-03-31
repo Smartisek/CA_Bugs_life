@@ -19,6 +19,8 @@ public:
     string getType() const override{
         return "Hopper " + to_string(getHopLength());
     }
+
+
 };
 
 
