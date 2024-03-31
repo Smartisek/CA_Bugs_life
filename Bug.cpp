@@ -38,6 +38,7 @@ string Bug::printBug(){
 }
 
 string Bug::directionToString(Direction direction){
+//    https://stackoverflow.com/questions/5093460/how-to-convert-an-enum-type-variable-to-a-string
     switch (direction) {
         case Direction::NORTH: return "North";
         case Direction::EAST: return "East";
