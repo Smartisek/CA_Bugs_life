@@ -38,8 +38,6 @@ int main() {
         if(getline(ss, hopLengthT, ';') && !hopLengthT.empty()){
             hopLength = stoi(hopLengthT);
         }
-
-//        cout << "Read: " << type << ";" << id << ";" << x << ";" << y << ";" << direction << ";" << size << ";" << hopLength <<  endl;
         if (type == "C") {
             bugs.push_back(new Crawler(id, x, y, static_cast<Direction>(direction), size));
         } else if(type == "H"){
@@ -53,7 +51,45 @@ int main() {
            cout << bugs[i]->printBug() << endl;
         }
 
-    searchForBug(bugs);
+//    searchForBug(bugs);
+
+    RenderWindow window(VideoMode(1000, 1000), "Bugs Life!");
+
+    vector<RectangleShape> background;
+    for(int r = 0; r<10; r++){
+        for(int c = 0; c <10; c++){
+            RectangleShape shape(Vector2f(100,100));
+            shape.setFillColor((r+c) %2==0?Color::Black:Color(0,120,20));
+            shape.setPosition(c*100, r*100);
+            background.push_back(shape);
+        }
+    }
+
+
+    while (window.isOpen()){
+        Event event;
+        while (window.pollEvent(event)){
+            if(event.type == Event::Closed){
+                window.close();
+            }
+        }
+
+        window.clear();
+        for(RectangleShape &r : background){
+            window.draw(r);
+        }
+
+        for(Bug* bug : bugs){
+            int radius = bug->getSize()* 3;
+            CircleShape bugShape(radius);
+            bugShape.setFillColor(Color(210,180,140));
+            bugShape.setPosition(100 * bug->getPosition().first + radius, 100*bug->getPosition().second + radius);
+            window.draw(bugShape);
+        }
+
+        window.display();
+    }
+
 
     for(Bug* bug : bugs){
         delete bug;
@@ -72,36 +108,14 @@ void searchForBug(vector<Bug*> &bugs){
             cout << bug->printBug() << endl;
         }
     }
+
+    for(Bug* bug : bugs){
+        delete bug;
+    }
+    bugs.clear();
 }
 
-    //    RenderWindow window(VideoMode(800, 800), "Bugs Life!");
-//
-//    vector<RectangleShape> background;
-//    for(int r = 0; r<8; r++){
-//      for(int c = 0; c <8; c++){
-//          RectangleShape shape(Vector2f(100,100));
-//          shape.setFillColor((r+c) %2==0?Color::Black:Color(0,120,20));
-//          shape.setPosition(c*100, r*100);
-//          background.push_back(shape);
-//      }
-//    }
-//
-//
-//    while (window.isOpen()){
-//        Event event;
-//        while (window.pollEvent(event)){
-//            if(event.type == Event::Closed){
-//                window.close();
-//            }
-//        }
-//
-//        window.clear();
-//        for(RectangleShape &r : background){
-//            window.draw(r);
-//        }
-//
-//        window.display();
-//    }
+
 
 
 

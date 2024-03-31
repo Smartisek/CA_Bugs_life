@@ -12,6 +12,7 @@ pair<int,int> Bug::getPosition() const{
     return position;
 }
 
+
 int Bug::getSize() const {
     return size;
 }
