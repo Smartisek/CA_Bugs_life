@@ -18,14 +18,16 @@ string getType() const override{
 void move() override{
     pair<int,int> newPosition = getPosition();
     switch(getDirection()){
-        case Direction::NORTH:newPosition.second+1;
+        case Direction::NORTH:newPosition.second+=1;
         break;
-        case Direction::SOUTH:newPosition.second-1;
+        case Direction::SOUTH:newPosition.second-=1;
         break;
-        case Direction::EAST:newPosition.first+1;
+        case Direction::EAST:newPosition.first+=1;
         break;
-        case Direction::WEST:newPosition.first-1;
+        case Direction::WEST:newPosition.first-=1;
     }
+    setPosition(newPosition);
+    if(newPosition.first || newPosition.second >)
 }
 
 };

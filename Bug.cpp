@@ -38,7 +38,7 @@ string Bug::printBug(){
     " " + directionToString(getDirection()) + " " + getStatus();
 }
 
-pair<int,int> Bug::setPosition(pair<int, int> positionNew){
+void Bug::setPosition(pair<int, int> positionNew){
     this -> position = positionNew;
 }
 

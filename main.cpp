@@ -72,6 +72,14 @@ int main() {
             if(event.type == Event::Closed){
                 window.close();
             }
+
+            if(event.type == sf::Event::MouseButtonPressed){
+                if(event.mouseButton.button == sf::Mouse::Left){
+                    for(Bug* bug : bugs){
+                        bug->move();
+                    }
+                }
+            }
         }
 
         window.clear();
