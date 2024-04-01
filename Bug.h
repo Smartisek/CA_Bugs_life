@@ -34,13 +34,14 @@ public:
     int getId() const;
     pair<int,int> getPosition() const;
     void setPosition(pair<int, int> positionNew);
+    void setDirection(Direction directionNew);
     Direction getDirection() const;
     int getSize() const;
     string getStatus();
     string directionToString(Direction direction);
     string positionToString(pair<int,int>);
     string printBug();
-    bool isWayBlocked();
+    bool isWayBlocked() const;
     virtual string getType() const = 0;
 
     virtual void move () = 0;

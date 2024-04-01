@@ -20,16 +20,36 @@ public:
     }
     void move() override{
         pair<int,int> newPosition = getPosition();
-        switch(getDirection()){
-            case Direction::NORTH:newPosition.second+=1;
-                break;
-            case Direction::SOUTH:newPosition.second-=1;
-                break;
-            case Direction::EAST:newPosition.first+=1;
-                break;
-            case Direction::WEST:newPosition.first-=1;
+        if(!isWayBlocked()){
+            switch(getDirection()){
+                case Direction::NORTH:
+                    setPosition(make_pair(newPosition.first, newPosition.second -1));
+                    break;
+                case Direction::SOUTH:
+                    setPosition(make_pair(newPosition.first, newPosition.second+1));
+                    break;
+                case Direction::EAST:
+                    setPosition(make_pair(newPosition.first+1, newPosition.second));
+                    break;
+                case Direction::WEST:
+                    setPosition(make_pair(newPosition.first-1, newPosition.second));
+            }
+        } else {
+            switch(getDirection()){
+                case Direction::NORTH:
+                    setDirection(Direction::SOUTH);
+                    break;
+                case Direction::SOUTH:
+                    setDirection(Direction::NORTH);
+                    break;
+                case Direction::EAST:
+                    setDirection(Direction::WEST);
+                    break;
+                case Direction::WEST:
+                    setDirection(Direction::EAST);
+                    break;
+            }
         }
-        setPosition(newPosition);
     }
 };
 

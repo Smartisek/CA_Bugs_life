@@ -42,6 +42,23 @@ void Bug::setPosition(pair<int, int> positionNew){
     this -> position = positionNew;
 }
 
+void Bug::setDirection(Direction directionNew) {
+    this -> direction = directionNew;
+}
+
+bool Bug::isWayBlocked() const{
+    pair<int,int> currentPosition = getPosition();
+    Direction currentDirrection = getDirection();
+    int boardSize =10;
+
+    if((currentPosition.first == 0 && currentDirrection == Direction::WEST) || (currentPosition.first == boardSize-1 && currentDirrection ==Direction::EAST) ||
+            (currentPosition.second == 0 && currentDirrection == Direction::NORTH) || (currentPosition.second == boardSize-1 && currentDirrection == Direction::SOUTH)){
+        return true;
+    } else {
+    return false;
+    }
+}
+
 string Bug::directionToString(Direction direction){
 //    https://stackoverflow.com/questions/5093460/how-to-convert-an-enum-type-variable-to-a-string
     switch (direction) {
