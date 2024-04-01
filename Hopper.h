@@ -23,17 +23,22 @@ public:
         if(!isWayBlocked()){
             switch(getDirection()){
                 case Direction::NORTH:
-                    setPosition(make_pair(newPosition.first, newPosition.second - getHopLength()));
+                    newPosition.second -=getHopLength();
+                    if(newPosition.second < 0){newPosition.second =0;}
                     break;
                 case Direction::SOUTH:
-                    setPosition(make_pair(newPosition.first, newPosition.second+ getHopLength()));
+                    newPosition.second += getHopLength();
+                    if(newPosition.second > 9){newPosition.second=10;}
                     break;
                 case Direction::EAST:
-                    setPosition(make_pair(newPosition.first+getHopLength(), newPosition.second));
+                    newPosition.first+=getHopLength();
+                    if(newPosition.first < 0){newPosition.first=0;}
                     break;
                 case Direction::WEST:
-                    setPosition(make_pair(newPosition.first-getHopLength(), newPosition.second));
+                    newPosition.first-=getHopLength();
+                    if(newPosition.first >9){newPosition.first=10;}
             }
+            setPosition(newPosition);
         } else {
             //        create a new instance of direction so we can assign it directions
             Direction newDirection;
