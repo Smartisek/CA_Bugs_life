@@ -51,8 +51,8 @@ bool Bug::isWayBlocked() const{
     Direction currentDirrection = getDirection();
     int boardSize =10;
 
-    if((currentPosition.first == 0 && currentDirrection == Direction::WEST) || (currentPosition.first == boardSize-1 && currentDirrection ==Direction::EAST) ||
-            (currentPosition.second == 0 && currentDirrection == Direction::NORTH) || (currentPosition.second == boardSize-1 && currentDirrection == Direction::SOUTH)){
+    if((currentPosition.first < 0 && currentDirrection == Direction::WEST) || (currentPosition.first > boardSize-1 && currentDirrection ==Direction::EAST) ||
+            (currentPosition.second < 0 && currentDirrection == Direction::NORTH) || (currentPosition.second > boardSize-1 && currentDirrection == Direction::SOUTH)){
         return true;
     } else {
     return false;

@@ -23,16 +23,16 @@ public:
         if(!isWayBlocked()){
             switch(getDirection()){
                 case Direction::NORTH:
-                    setPosition(make_pair(newPosition.first, newPosition.second -1));
+                    setPosition(make_pair(newPosition.first, newPosition.second - getHopLength()));
                     break;
                 case Direction::SOUTH:
-                    setPosition(make_pair(newPosition.first, newPosition.second+1));
+                    setPosition(make_pair(newPosition.first, newPosition.second+ getHopLength()));
                     break;
                 case Direction::EAST:
-                    setPosition(make_pair(newPosition.first+1, newPosition.second));
+                    setPosition(make_pair(newPosition.first+getHopLength(), newPosition.second));
                     break;
                 case Direction::WEST:
-                    setPosition(make_pair(newPosition.first-1, newPosition.second));
+                    setPosition(make_pair(newPosition.first-getHopLength(), newPosition.second));
             }
         } else {
             switch(getDirection()){
