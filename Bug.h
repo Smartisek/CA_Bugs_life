@@ -39,12 +39,13 @@ public:
     int getSize() const;
     string getStatus();
     string directionToString(Direction direction);
-    string positionToString(pair<int,int>);
+    static string positionToString(pair<int,int>);
     string printBug();
     bool isWayBlocked() const;
     virtual string getType() const = 0;
-
     virtual void move () = 0;
+    list<pair<int,int>> getPathTaken() const;
+    string printPath();
 };
 
 #endif //SFML_002_BUG_H

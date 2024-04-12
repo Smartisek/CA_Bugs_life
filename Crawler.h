@@ -5,6 +5,7 @@
 #ifndef SFML_002_CRAWLER_H
 #define SFML_002_CRAWLER_H
 #include "Bug.h"
+#include "list"
 
 
 class Crawler : public Bug{
@@ -57,6 +58,10 @@ void move() override{
         } while (newDirection == getDirection());
 //        when new direction chosen, set it to bugs direction
         setDirection(newDirection);
+//        list<pair<int, int>> lifePath;
+//        lifePath.push_back(getPosition());
+//        cout << positionToString(lifePath.back());
+
     }
 }
 

@@ -70,6 +70,10 @@ int main() {
         Event event;
         while (window.pollEvent(event)){
             if(event.type == Event::Closed){
+//                before closing application, loop through each bugs path taken and print it 
+                for(int i =0; i < bugs.size(); i++){
+                    cout << bugs[i]->printPath();
+                }
                 window.close();
             }
 

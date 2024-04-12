@@ -40,11 +40,29 @@ string Bug::printBug(){
 
 void Bug::setPosition(pair<int, int> positionNew){
     this -> position = positionNew;
+    path.push_back(positionNew); // everytime bug moves, push a new position into our path list
+}
+
+list<pair<int,int>> Bug::getPathTaken() const{
+    return path;
+}
+
+string Bug::printPath(){
+//    create a string that will get id of the bug, his type and then loop through it's path that is being added inside setPosition();
+    string result = to_string(getId()) + " " + getType() + " Path: ";
+//    a for each loop, const makes sure that the position does not get change inside the loop, decides the type by itself and then
+//    we use reference to the element inside of path with & and loop through, {for each &pos(element) inside(:) path}
+    for(const auto &pos : path){
+        result += positionToString(pos) + ",";
+    }
+    result += getStatus() + "!" + "\n";
+    return result;
 }
 
 void Bug::setDirection(Direction directionNew) {
     this -> direction = directionNew;
 }
+
 
 bool Bug::isWayBlocked() const{
 //    instances with current position and direction
