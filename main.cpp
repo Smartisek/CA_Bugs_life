@@ -10,8 +10,10 @@ using namespace std;
 using namespace sf;
 
 void searchForBug(vector<Bug*> &bugs);
+void printFileLifePath(vector<Bug*> &bugs);
 
 int main() {
+//    creating a vector with reference of type pointer to Bug, meaning it can point to any derived class like hopper and crawler
     vector<Bug*> bugs;
     ifstream bugFile("bugs.txt");
     if(!bugFile.is_open()){
@@ -70,10 +72,11 @@ int main() {
         Event event;
         while (window.pollEvent(event)){
             if(event.type == Event::Closed){
-//                before closing application, loop through each bugs path taken and print it 
-                for(int i =0; i < bugs.size(); i++){
-                    cout << bugs[i]->printPath();
-                }
+//                before closing application, loop through each bugs path taken and print it
+//                for(int i =0; i < bugs.size(); i++){
+//                    cout << bugs[i]->printPath();
+//                }
+                printFileLifePath(bugs);
                 window.close();
             }
 
@@ -126,6 +129,22 @@ void searchForBug(vector<Bug*> &bugs){
         delete bug;
     }
     bugs.clear();
+}
+
+// function that saves path taken and passes it into our file .out
+void printFileLifePath(vector<Bug*> &bugs){
+    ofstream fout("bugs_life_history_date_time.out");
+//    check if the file is open and if it is go through bugs and pass their path into the file
+    if(fout){
+        for(auto &pos : bugs){
+            fout << pos->printPath();
+        }
+//        after close the file
+            fout.close();
+//        if it does not open get error message
+    } else{
+        cout << "Unable to open file." << endl;
+    }
 }
 
 
