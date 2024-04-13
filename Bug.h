@@ -43,9 +43,10 @@ public:
     string printBug();
     bool isWayBlocked() const;
     virtual string getType() const = 0;
-    virtual void move () = 0;
+    virtual void move (Bug& otherBug) = 0;
     list<pair<int,int>> getPathTaken() const;
     string printPath();
+    bool areInSameCell(const Bug& bug1,const Bug& bug2);
 };
 
 #endif //SFML_002_BUG_H
