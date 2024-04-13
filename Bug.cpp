@@ -70,8 +70,8 @@ bool Bug::isWayBlocked() const{
     Direction currentDirrection = getDirection();
     int boardSize =10;
 // check for edges, if any of these is true then return true meaning bug is on the edge cant go further
-    if((currentPosition.first <= 0 && currentDirrection == Direction::WEST) || (currentPosition.first >= boardSize-1 && currentDirrection ==Direction::EAST) ||
-            (currentPosition.second <= 0 && currentDirrection == Direction::NORTH) || (currentPosition.second >= boardSize-1 && currentDirrection == Direction::SOUTH)){
+    if((currentPosition.first == 0 && currentDirrection == Direction::WEST) || (currentPosition.first == boardSize-1 && currentDirrection ==Direction::EAST) ||
+            (currentPosition.second == 0 && currentDirrection == Direction::NORTH) || (currentPosition.second == boardSize-1 && currentDirrection == Direction::SOUTH)){
         return true;
     } else {
 //        if any of above condition is not met return false, nothing is blocking bug

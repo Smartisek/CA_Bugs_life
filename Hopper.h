@@ -24,19 +24,19 @@ public:
             switch(getDirection()){
                 case Direction::NORTH:
                     newPosition.second -=getHopLength();
-                    if(newPosition.second < 0){newPosition.second =0;}
+                    if(newPosition.second <= 0){newPosition.second =0;}
                     break;
                 case Direction::SOUTH:
                     newPosition.second += getHopLength();
-                    if(newPosition.second > 9){newPosition.second=9;}
+                    if(newPosition.second >= 9){newPosition.second=9;}
                     break;
                 case Direction::EAST:
                     newPosition.first+=getHopLength();
-                    if(newPosition.first < 0){newPosition.first=0;}
+                    if(newPosition.first >= 9){newPosition.first=9;}
                     break;
                 case Direction::WEST:
                     newPosition.first-=getHopLength();
-                    if(newPosition.first >9){newPosition.first=9;}
+                    if(newPosition.first <=0){newPosition.first=0;}
             }
             setPosition(newPosition);
         } else {

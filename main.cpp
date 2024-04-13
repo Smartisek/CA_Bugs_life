@@ -9,6 +9,7 @@
 using namespace std;
 using namespace sf;
 
+void eat(vector<Bug*> bugs, bool &messagePrinted);
 void searchForBug(vector<Bug*> &bugs);
 void printFileLifePath(vector<Bug*> &bugs);
 
@@ -93,21 +94,8 @@ int main() {
                 }
             }
         }
-//        Check for if more bugs are in the same cell, two for each loops going through bugs vector
-        for(Bug* bug1 : bugs){
-            for(Bug* bug2 : bugs){
-//                make sure the function is not checking if bug is itself in the same cell
-                if(bug1 != bug2){
-//                    if they are in the same cell and message has not been printed before print a message and set messagePrinted variable to true so the condition cannot be met again
-//                     this way we do not get ton of messages when bugs are in the same cell but only one message
-                    if(Bug::areInSameCell(*bug1, *bug2) && !messagePrinted){
-                        cout << "Bugs " << bug1->getId() << " and " << bug2->getId() << " in the same cell: " << bug1->positionToString(bug1->getPosition()) << endl;
-                        messagePrinted = true;
-                    }
-                }
 
-            }
-        }
+        eat(bugs, messagePrinted);
 
         window.clear();
         for(RectangleShape &r : background){
@@ -165,6 +153,25 @@ void printFileLifePath(vector<Bug*> &bugs){
         cout << "Unable to open file." << endl;
     }
 }
+
+void eat(vector<Bug*> bugs, bool &messagePrinted){
+    //        Check for if more bugs are in the same cell, two for each loops going through bugs vector
+    for(Bug* bug1 : bugs){
+        for(Bug* bug2 : bugs){
+//                make sure the function is not checking if bug is itself in the same cell
+            if(bug1 != bug2){
+//                    if they are in the same cell and message has not been printed before print a message and set messagePrinted variable to true so the condition cannot be met again
+//                     this way we do not get ton of messages when bugs are in the same cell but only one message
+                if(Bug::areInSameCell(*bug1, *bug2) && !messagePrinted){
+                    cout << "Bugs " << bug1->getId() << " and " << bug2->getId() << " in the same cell: " << bug1->positionToString(bug1->getPosition()) << endl;
+                    messagePrinted = true;
+                }
+            }
+
+        }
+    }
+}
+
 
 
 
