@@ -6,6 +6,7 @@
 #define SFML_002_BUG_H
 
 #include <utility>
+#include <vector>
 #include "iostream"
 #include "list"
 using namespace std;
@@ -35,6 +36,7 @@ public:
     pair<int,int> getPosition() const;
     void setPosition(pair<int, int> positionNew);
     void setDirection(Direction directionNew);
+    void setSize(int size);
     Direction getDirection() const;
     int getSize() const;
     string getStatus();
@@ -47,6 +49,7 @@ public:
     list<pair<int,int>> getPathTaken() const;
     string printPath();
     static bool areInSameCell(const Bug& bug1, const Bug& bug2);
+    static void eat(vector<Bug*> &bugs);
 };
 
 #endif //SFML_002_BUG_H

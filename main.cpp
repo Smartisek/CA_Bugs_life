@@ -9,7 +9,7 @@
 using namespace std;
 using namespace sf;
 
-void eat(vector<Bug*> bugs, bool &messagePrinted);
+void eat(vector<Bug*> &bugs, bool &messagePrinted);
 void searchForBug(vector<Bug*> &bugs);
 void printFileLifePath(vector<Bug*> &bugs);
 
@@ -94,7 +94,7 @@ int main() {
                 }
             }
         }
-
+//      eat functionality
         eat(bugs, messagePrinted);
 
         window.clear();
@@ -154,7 +154,7 @@ void printFileLifePath(vector<Bug*> &bugs){
     }
 }
 
-void eat(vector<Bug*> bugs, bool &messagePrinted){
+void eat(vector<Bug*> &bugs, bool &messagePrinted){
     //        Check for if more bugs are in the same cell, two for each loops going through bugs vector
     for(Bug* bug1 : bugs){
         for(Bug* bug2 : bugs){
@@ -164,7 +164,9 @@ void eat(vector<Bug*> bugs, bool &messagePrinted){
 //                     this way we do not get ton of messages when bugs are in the same cell but only one message
                 if(Bug::areInSameCell(*bug1, *bug2) && !messagePrinted){
                     cout << "Bugs " << bug1->getId() << " and " << bug2->getId() << " in the same cell: " << bug1->positionToString(bug1->getPosition()) << endl;
+                    Bug::eat(bugs);
                     messagePrinted = true;
+//                    eat(vector<>);
                 }
             }
 

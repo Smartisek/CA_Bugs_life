@@ -43,6 +43,15 @@ void Bug::setPosition(pair<int, int> positionNew){
     path.push_back(positionNew); // everytime bug moves, push a new position into our path list
 }
 
+void Bug::setSize(int size){
+    if(size >10){
+        this->size = 10;
+    } else {
+        this->size = size;
+    }
+
+}
+
 list<pair<int,int>> Bug::getPathTaken() const{
     return path;
 }
@@ -93,6 +102,26 @@ string Bug::directionToString(Direction direction){
 bool Bug::areInSameCell(const Bug& bug1,const Bug& bug2){
 //    if their position is the same return true
     return bug1.getPosition() == bug2.getPosition();
+}
+
+void Bug::eat(vector<Bug*> &bugs){
+    for(int i=0; i<bugs.size();i++){
+        bool erased = false;
+        for(int j=0;j<bugs.size();j++){
+            if(areInSameCell(*bugs[i], *bugs[j]) && !erased){
+                if(bugs[i]->getSize() > bugs[j]->getSize()){
+                    cout << "Size before: " << bugs[i]->getSize() << endl;
+                   cout << "Eat " << bugs[j]->getId() << "size: " << bugs[j]->getSize() << " , " << bugs[i]->getId() << " is bigger:" << bugs[i]->getSize() <<endl;
+                   bugs[i]->setSize(bugs[i]->getSize() + bugs[j]->getSize());
+                   cout << "Size after: " << bugs[i]->getSize() << endl;
+                   bugs.erase(bugs.begin()+j);
+                   erased = true;
+                   j--;
+                }
+            }
+        }
+    }
+
 }
 
 
