@@ -28,7 +28,7 @@ public:
                     break;
                 case Direction::SOUTH:
                     newPosition.second += getHopLength();
-                    if(newPosition.second > 9){newPosition.second=10;}
+                    if(newPosition.second > 9){newPosition.second=9;}
                     break;
                 case Direction::EAST:
                     newPosition.first+=getHopLength();
@@ -36,7 +36,7 @@ public:
                     break;
                 case Direction::WEST:
                     newPosition.first-=getHopLength();
-                    if(newPosition.first >9){newPosition.first=10;}
+                    if(newPosition.first >9){newPosition.first=9;}
             }
             setPosition(newPosition);
         } else {
