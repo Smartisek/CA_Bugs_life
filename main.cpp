@@ -68,6 +68,8 @@ int main() {
     }
 
 
+
+
     while (window.isOpen()){
         Event event;
         while (window.pollEvent(event)){
@@ -83,13 +85,19 @@ int main() {
             if(event.type == sf::Event::MouseButtonPressed){
                 if(event.mouseButton.button == sf::Mouse::Left){
                     for(Bug* bug : bugs){
-                        for(Bug* bugOther : bugs){
-                            if(bug != bugOther){
-                                bug->move(*bugOther);
-                            }
-                        }
+                       bug->move();
                     }
                 }
+            }
+        }
+        for(Bug* bug1 : bugs){
+            for(Bug* bug2 : bugs){
+                if(bug1 != bug2){
+                    if(Bug::areInSameCell(*bug1, *bug2)){
+                        cout << "Bugs " << bug1->getId() << " and " << bug2->getId() << " in the same cell: " << bug1->positionToString(bug1->getPosition()) << endl;
+                    }
+                }
+
             }
         }
 

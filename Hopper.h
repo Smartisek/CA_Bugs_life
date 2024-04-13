@@ -18,7 +18,7 @@ public:
     string getType() const override{
         return "Hopper " + to_string(getHopLength());
     }
-    void move(Bug& otherBug) override{
+    void move() override{
         pair<int,int> newPosition = getPosition();
         if(!isWayBlocked()){
             switch(getDirection()){

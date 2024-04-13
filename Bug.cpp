@@ -93,7 +93,6 @@ string Bug::directionToString(Direction direction){
 bool Bug::areInSameCell(const Bug& bug1,const Bug& bug2){
 //    if their position is the same return true
     return bug1.getPosition() == bug2.getPosition();
-    cout << "Bugs " << bug1.getId() << " and " << bug2.getId() << "in same cell: " << bug1.positionToString(getPosition()) << endl;
 }
 
 

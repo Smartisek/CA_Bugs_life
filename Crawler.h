@@ -16,13 +16,9 @@ string getType() const override{
     return "Crawler";
 }
 
-void move(Bug& otherBug) override{
+void move() override{
     pair<int,int> newPosition = getPosition();
     int randomDirection = rand() % 4;
-
-    if(areInSameCell(*this, otherBug)){
-        cout << "Bugs " << this->getId() << " and " << otherBug.getId() << " in the same cell: " << this->positionToString(getPosition()) << endl;
-    }
 
     if(!isWayBlocked()){
         switch(getDirection()){
