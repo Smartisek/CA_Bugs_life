@@ -86,7 +86,10 @@ int main() {
             if(event.type == sf::Event::MouseButtonPressed){
                 if(event.mouseButton.button == sf::Mouse::Left){
                     for(Bug* bug : bugs){
-                       bug->move();
+                        if(bug->getStatus() == "Alive"){
+                            bug->move();
+                        }
+
                     }
 //                    reset messagePrinted variable to false when clicked so the areInTheSameCell() check is possible again, this variable makes sure
 //                    the message is not printed constantly until they move out
@@ -107,7 +110,10 @@ int main() {
             CircleShape bugShape(radius);
             bugShape.setFillColor(Color(210,180,140));
             bugShape.setPosition(100 * bug->getPosition().first + radius, 100*bug->getPosition().second + radius);
-            window.draw(bugShape);
+            if(bug->getStatus() == "Alive"){
+                window.draw(bugShape);
+            }
+
         }
 
         window.display();

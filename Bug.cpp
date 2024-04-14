@@ -17,7 +17,7 @@ int Bug::getSize() const {
     return size;
 }
 
-string Bug::getStatus() {
+string Bug::getStatus() const {
     if(alive == 1){
         return "Alive";
     } else {
@@ -41,6 +41,10 @@ string Bug::printBug(){
 void Bug::setPosition(pair<int, int> positionNew){
     this -> position = positionNew;
     path.push_back(positionNew); // everytime bug moves, push a new position into our path list
+}
+
+void Bug::setStatus(bool status){
+    this->alive =status;
 }
 
 void Bug::setSize(int size){
@@ -101,20 +105,21 @@ string Bug::directionToString(Direction direction){
 // boolean check function if more bugs are in the same cell
 bool Bug::areInSameCell(const Bug& bug1,const Bug& bug2){
 //    if their position is the same return true
-    return bug1.getPosition() == bug2.getPosition();
+    return bug1.getPosition() == bug2.getPosition() && bug1.getStatus() == "Alive" && bug2.getStatus() == "Alive";
 }
 
 void Bug::eat(vector<Bug*> &bugs){
     for(int i=0; i<bugs.size();i++){
         bool erased = false;
-        for(int j=0;j<bugs.size();j++){
-            if(areInSameCell(*bugs[i], *bugs[j]) && !erased){
+        for(int j=0;j<bugs.size() && !erased;j++){
+            if(i!=j && areInSameCell(*bugs[i], *bugs[j])){
                 if(bugs[i]->getSize() > bugs[j]->getSize()){
                     cout << "Size before: " << bugs[i]->getSize() << endl;
                    cout << "Eat " << bugs[j]->getId() << "size: " << bugs[j]->getSize() << " , " << bugs[i]->getId() << " is bigger:" << bugs[i]->getSize() <<endl;
                    bugs[i]->setSize(bugs[i]->getSize() + bugs[j]->getSize());
                    cout << "Size after: " << bugs[i]->getSize() << endl;
-                   bugs.erase(bugs.begin()+j);
+//                   bugs.erase(bugs.begin()+j);
+                    bugs[j]->setStatus(false);
                    erased = true;
                    j--;
                 }

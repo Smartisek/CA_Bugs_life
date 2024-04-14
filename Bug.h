@@ -37,9 +37,10 @@ public:
     void setPosition(pair<int, int> positionNew);
     void setDirection(Direction directionNew);
     void setSize(int size);
+    void setStatus(bool status);
     Direction getDirection() const;
     int getSize() const;
-    string getStatus();
+    string getStatus() const;
     string directionToString(Direction direction);
     static string positionToString(pair<int,int>);
     string printBug();
