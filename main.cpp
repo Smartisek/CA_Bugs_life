@@ -23,24 +23,25 @@ int main() {
     string line;
     string type, idT, xT, yT, directionT, sizeT, hopLengthT;
     int id, x, y, direction, size, hopLength;
-
+//  reading from the file
     while(getline(bugFile, line)) {
         stringstream ss(line);
         getline(ss, type, ';');
         getline(ss, idT, ';');
         id = stoi(idT);
         getline(ss, xT, ';');
-        x = stoi(xT);
+        x = stoi(xT);   //stoi converts string to an integer
         getline(ss, yT, ';');
         y = stoi(yT);
         getline(ss, directionT, ';');
         direction = stoi(directionT);
         getline(ss, sizeT, ';');
         size = stoi(sizeT);
-        hopLength =0;
+        hopLength =0; //default hop length
         if(getline(ss, hopLengthT, ';') && !hopLengthT.empty()){
             hopLength = stoi(hopLengthT);
         }
+//        creating bugs om HEAP with data taken from bugs.txt file
         if (type == "C") {
             bugs.push_back(new Crawler(id, x, y, static_cast<Direction>(direction), size));
         } else if(type == "H"){
@@ -48,6 +49,7 @@ int main() {
         }
     }
     cout << bugs.size() << endl;
+//    after reading data, close the file
         bugFile.close();
 
         for(int i=0; i<bugs.size(); i++){
@@ -67,7 +69,7 @@ int main() {
             background.push_back(shape);
         }
     }
-
+// for stopping printing ton of messages a second when collision
     bool messagePrinted = false;
 
 
@@ -79,6 +81,7 @@ int main() {
 //                for(int i =0; i < bugs.size(); i++){
 //                    cout << bugs[i]->printPath();
 //                }
+//              when application closed print paths into date_out file
                 printFileLifePath(bugs);
                 window.close();
             }
@@ -108,7 +111,11 @@ int main() {
         for(Bug* bug : bugs){
             int radius = bug->getSize()* 3;
             CircleShape bugShape(radius);
-            bugShape.setFillColor(Color(210,180,140));
+            if(bug->getType() == "Crawler"){
+                bugShape.setFillColor(Color(0,0,250));
+            } else if (bug->getType() == "Hopper"){
+                bugShape.setFillColor(Color(0, 250, 250));
+            }
             bugShape.setPosition(100 * bug->getPosition().first + radius, 100*bug->getPosition().second + radius);
             if(bug->getStatus() == "Alive"){
                 window.draw(bugShape);
@@ -119,7 +126,7 @@ int main() {
         window.display();
     }
 
-
+// since in the beginning we are creating new bugs (NEW) allocating on the HEAP then we need to clear afterwards and delete existing pointers
     for(Bug* bug : bugs){
         delete bug;
     }
@@ -137,11 +144,6 @@ void searchForBug(vector<Bug*> &bugs){
             cout << bug->printBug() << endl;
         }
     }
-
-    for(Bug* bug : bugs){
-        delete bug;
-    }
-    bugs.clear();
 }
 
 // function that saves path taken and passes it into our file .out

@@ -25,6 +25,7 @@ string Bug::getStatus() const {
     }
 }
 
+
 string Bug::positionToString(pair<int,int> position){
     return "(" + to_string(position.first) + "," + to_string(position.second) + ")";
 }
@@ -68,6 +69,7 @@ string Bug::printPath(){
     for(const auto &pos : path){
         result += positionToString(pos) + ",";
     }
+//    if isEatenBy has an ID inside then print message eaten by this id bug
     if(isEatenBy !=-1){
         result += " Eaten by " + to_string(isEatenBy) +"\n";
     } else{
@@ -118,25 +120,21 @@ void Bug::eat(vector<Bug*> &bugs){
         for(int j=0;j<bugs.size() && !erased;j++){
             if(i!=j && areInSameCell(*bugs[i], *bugs[j])){
                 if(bugs[i]->getSize() > bugs[j]->getSize()){
-                    cout << "Size before: " << bugs[i]->getSize() << endl;
-                   cout << "Eat " << bugs[j]->getId() << "size: " << bugs[j]->getSize() << " , " << bugs[i]->getId() << " is bigger:" << bugs[i]->getSize() <<endl;
-                   bugs[i]->setSize(bugs[i]->getSize() + bugs[j]->getSize());
-                   cout << "Size after: " << bugs[i]->getSize() << endl;
-//                   bugs.erase(bugs.begin()+j);
+//                    cout << "Size before: " << bugs[i]->getSize() << endl;
+//                   cout << "Eat " << bugs[j]->getId() << "size: " << bugs[j]->getSize() << " , " << bugs[i]->getId() << " is bigger:" << bugs[i]->getSize() <<endl;
+                    bugs[i]->setSize(bugs[i]->getSize() + bugs[j]->getSize());
+//                   cout << "Size after: " << bugs[i]->getSize() << endl;
                     bugs[j]->setStatus(false);
                     bugs[j]->isEatenBy = bugs[i]->getId();
-                   erased = true;
-                   j--;
+                    erased = true;
                 } else if(bugs[j]->getSize() > bugs[i]->getSize()){
-                    cout << "Size before: " << bugs[j]->getSize() << endl;
-                    cout << "Eat " << bugs[i]->getId() << "size: " << bugs[i]->getSize() << " , " << bugs[j]->getId() << " is bigger:" << bugs[j]->getSize() <<endl;
+//                    cout << "Size before: " << bugs[j]->getSize() << endl;
+//                    cout << "Eat " << bugs[i]->getId() << "size: " << bugs[i]->getSize() << " , " << bugs[j]->getId() << " is bigger:" << bugs[j]->getSize() <<endl;
                     bugs[j]->setSize(bugs[j]->getSize() + bugs[i]->getSize());
-                    cout << "Size after: " << bugs[i]->getSize() << endl;
-//                   bugs.erase(bugs.begin()+j);
+//                    cout << "Size after: " << bugs[i]->getSize() << endl;
                     bugs[i]->setStatus(false);
                     bugs[i]->isEatenBy = bugs[j]->getId();
                     erased = true;
-                    i--;
                 }
             }
         }

@@ -16,7 +16,7 @@ public:
 
     int getHopLength() const;
     string getType() const override{
-        return "Hopper " + to_string(getHopLength());
+        return "Hopper";
     }
     void move() override{
         pair<int,int> newPosition = getPosition();

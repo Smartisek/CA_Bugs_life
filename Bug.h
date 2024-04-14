@@ -27,7 +27,7 @@ private:
     int size;
     bool alive;
     list<pair<int, int>> path;
-    int isEatenBy = -1;
+    int isEatenBy = -1; //default -1, later if eaten gets assigned id of a bug that ate current bug
 
 public:
     Bug(int id, int x, int y, Direction direction, int size)
