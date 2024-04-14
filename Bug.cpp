@@ -68,7 +68,11 @@ string Bug::printPath(){
     for(const auto &pos : path){
         result += positionToString(pos) + ",";
     }
-    result += getStatus() + "!" + "\n";
+    if(isEatenBy !=-1){
+        result += " Eaten by " + to_string(isEatenBy) +"\n";
+    } else{
+        result += getStatus() + "!" + "\n";
+    }
     return result;
 }
 
@@ -120,13 +124,23 @@ void Bug::eat(vector<Bug*> &bugs){
                    cout << "Size after: " << bugs[i]->getSize() << endl;
 //                   bugs.erase(bugs.begin()+j);
                     bugs[j]->setStatus(false);
+                    bugs[j]->isEatenBy = bugs[i]->getId();
                    erased = true;
                    j--;
+                } else if(bugs[j]->getSize() > bugs[i]->getSize()){
+                    cout << "Size before: " << bugs[j]->getSize() << endl;
+                    cout << "Eat " << bugs[i]->getId() << "size: " << bugs[i]->getSize() << " , " << bugs[j]->getId() << " is bigger:" << bugs[j]->getSize() <<endl;
+                    bugs[j]->setSize(bugs[j]->getSize() + bugs[i]->getSize());
+                    cout << "Size after: " << bugs[i]->getSize() << endl;
+//                   bugs.erase(bugs.begin()+j);
+                    bugs[i]->setStatus(false);
+                    bugs[i]->isEatenBy = bugs[j]->getId();
+                    erased = true;
+                    i--;
                 }
             }
         }
     }
-
 }
 
 

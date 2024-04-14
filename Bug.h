@@ -27,6 +27,7 @@ private:
     int size;
     bool alive;
     list<pair<int, int>> path;
+    int isEatenBy = -1;
 
 public:
     Bug(int id, int x, int y, Direction direction, int size)
