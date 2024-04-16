@@ -20,51 +20,41 @@ public:
     }
     void move() override{
         pair<int,int> newPosition = getPosition();
-        if(!isWayBlocked()){
-            switch(getDirection()){
-                case Direction::NORTH:
-                    newPosition.second -=getHopLength();
-                    if(newPosition.second <= 0){newPosition.second =0;}
+        while(isWayBlocked()){
+            int randomNumber = rand()%4;
+            switch (randomNumber) {
+                case 0:
+                    setDirection(Direction::SOUTH);
                     break;
-                case Direction::SOUTH:
-                    newPosition.second += getHopLength();
-                    if(newPosition.second >= 9){newPosition.second=9;}
+                case 1:
+                    setDirection(Direction::NORTH);
                     break;
-                case Direction::EAST:
-                    newPosition.first+=getHopLength();
-                    if(newPosition.first >= 9){newPosition.first=9;}
+                case 2:
+                    setDirection(Direction::WEST);
                     break;
-                case Direction::WEST:
-                    newPosition.first-=getHopLength();
-                    if(newPosition.first <=0){newPosition.first=0;}
+                case 3:
+                    setDirection(Direction::WEST);
+                    break;
             }
-            setPosition(newPosition);
-        } else {
-            //        create a new instance of direction so we can assign it directions
-            Direction newDirection;
-            do {
-//            random numbers between 0-3
-                int randomNumber = rand() %4;
-//            switch for each direction with number
-                switch(randomNumber){
-                    case 0:
-                        newDirection = Direction::SOUTH;
-                        break;
-                    case 1:
-                        newDirection = Direction::NORTH;
-                        break;
-                    case 2:
-                        newDirection = Direction::WEST;
-                        break;
-                    case 3:
-                        newDirection = Direction::EAST;
-                        break;
-                }
-//            do this until newDirection and current direction is not the same
-            } while (newDirection == getDirection());
-//        when new direction chosen, set it to bugs direction
-            setDirection(newDirection);
         }
+        switch (getDirection()) {
+            case Direction::NORTH:
+                newPosition.second -=getHopLength();
+                if(newPosition.second <= 0){newPosition.second =0;}
+                break;
+            case Direction::SOUTH:
+                newPosition.second += getHopLength();
+                if(newPosition.second >= 9){newPosition.second=9;}
+                break;
+            case Direction::EAST:
+                newPosition.first+=getHopLength();
+                if(newPosition.first >= 9){newPosition.first=9;}
+                break;
+            case Direction::WEST:
+                newPosition.first-=getHopLength();
+                if(newPosition.first <=0){newPosition.first=0;}
+        }
+        setPosition(newPosition);
     }
 };
 
