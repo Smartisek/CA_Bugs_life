@@ -3,7 +3,11 @@
 //
 
 #include <fstream>
+#include <sstream>
 #include "Board.h"
+#include "Crawler.h"
+#include "Hopper.h"
+
 void Board::drawBoard(sf::RenderWindow &window) {
     for(sf::RectangleShape &r : background){
         window.draw(r);
@@ -71,4 +75,46 @@ void Board::searchForBug(vector<Bug*> &bugs){
             cout << bug->printBug() << endl;
         }
     }
+}
+
+vector<Bug*> Board::loadBugsFromFile(){
+    vector<Bug*> bugs;
+    ifstream bugFile("bugs.txt");
+    if(!bugFile.is_open()){
+        cout << "File failed to open" << endl;
+    }
+    string line;
+    string type, idT, xT, yT, directionT, sizeT, hopLengthT;
+    int id, x, y, direction, size, hopLength;
+//  reading from the file
+    while(getline(bugFile, line)) {
+        stringstream ss(line);
+        getline(ss, type, ';');
+        getline(ss, idT, ';');
+        id = stoi(idT);
+        getline(ss, xT, ';');
+        x = stoi(xT);   //stoi converts string to an integer
+        getline(ss, yT, ';');
+        y = stoi(yT);
+        getline(ss, directionT, ';');
+        direction = stoi(directionT);
+        getline(ss, sizeT, ';');
+        size = stoi(sizeT);
+        hopLength =0; //default hop length
+        if(getline(ss, hopLengthT, ';') && !hopLengthT.empty()){
+            hopLength = stoi(hopLengthT);
+        }
+//        creating bugs om HEAP with data taken from bugs.txt file
+        if (type == "C") {
+            bugs.push_back(new Crawler(id, x, y, static_cast<Direction>(direction), size));
+        } else if(type == "H"){
+            bugs.push_back(new Hopper(id, x, y, static_cast<Direction>(direction), size, hopLength));
+        }
+    }
+//    after reading data, close the file
+    bugFile.close();
+    for(int i=0; i<bugs.size(); i++){
+        cout << bugs[i]->printBug() << endl;
+    }
+    return bugs;
 }

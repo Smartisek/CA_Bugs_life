@@ -26,10 +26,11 @@ public:
         }
     }
     void drawBoard(sf::RenderWindow &window);
-    void drawBugs(vector<Bug *> bugs, sf::RenderWindow &window);
+    void drawBugs(vector<Bug*> bugs, sf::RenderWindow &window);
     void eat(vector<Bug*> &bugs, bool &messagePrinted);
     void printFileLifePath(vector<Bug*> &bugs);
     void searchForBug(vector<Bug*> &bugs);
+    vector<Bug*> loadBugsFromFile();
 };
 
 
