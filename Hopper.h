@@ -20,6 +20,7 @@ public:
     }
     void move() override{
         pair<int,int> newPosition = getPosition();
+//        when way is blocked meaning bug is on the edge, randomly select new direction
         while(isWayBlocked()){
             int randomNumber = rand()%4;
             switch (randomNumber) {
@@ -37,6 +38,7 @@ public:
                     break;
             }
         }
+//        if way is not block, move the hopper by its hop length and direction
         switch (getDirection()) {
             case Direction::NORTH:
                 newPosition.second -=getHopLength();
@@ -54,6 +56,7 @@ public:
                 newPosition.first-=getHopLength();
                 if(newPosition.first <=0){newPosition.first=0;}
         }
+//        set the new position
         setPosition(newPosition);
     }
 };

@@ -6,6 +6,7 @@
 #include "Hopper.h"
 #include "vector"
 #include "fstream"
+#include "Board.h"
 using namespace std;
 using namespace sf;
 
@@ -16,6 +17,7 @@ void printFileLifePath(vector<Bug*> &bugs);
 int main() {
 //    creating a vector with reference of type pointer to Bug, meaning it can point to any derived class like hopper and crawler
     vector<Bug*> bugs;
+    Board board;
     ifstream bugFile("bugs.txt");
     if(!bugFile.is_open()){
         cout << "File failed to open" << endl;
@@ -60,15 +62,16 @@ int main() {
 
     RenderWindow window(VideoMode(1000, 1000), "Bugs Life!");
 
-    vector<RectangleShape> background;
-    for(int r = 0; r<10; r++){
-        for(int c = 0; c <10; c++){
-            RectangleShape shape(Vector2f(100,100));
-            shape.setFillColor((r+c) %2==0?Color::Black:Color(0,120,20));
-            shape.setPosition(c*100, r*100);
-            background.push_back(shape);
-        }
-    }
+//    vector<RectangleShape> background;
+//    for(int r = 0; r<10; r++){
+//        for(int c = 0; c <10; c++){
+//            RectangleShape shape(Vector2f(100,100));
+//            shape.setFillColor((r+c) %2==0?Color::Black:Color(0,120,20));
+//            shape.setPosition(c*100, r*100);
+//            background.push_back(shape);
+//        }
+//    }
+
 // for stopping printing ton of messages a second when collision
     bool messagePrinted = false;
 
@@ -104,9 +107,7 @@ int main() {
         eat(bugs, messagePrinted);
 
         window.clear();
-        for(RectangleShape &r : background){
-            window.draw(r);
-        }
+        board.drawBoard(window);
 
         for(Bug* bug : bugs){
             int radius = bug->getSize()* 3;
