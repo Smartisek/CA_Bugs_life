@@ -49,8 +49,8 @@ void Bug::setStatus(bool status){
 }
 
 void Bug::setSize(int size){
-    if(size >10){
-        this->size = 10;
+    if(size >15){
+        this->size = 15;
     } else {
         this->size = size;
     }

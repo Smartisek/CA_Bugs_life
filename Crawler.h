@@ -16,11 +16,29 @@ string getType() const override{
     return "Crawler";
 }
 
-void move() override{
-    pair<int,int> newPosition = getPosition();
-    int randomDirection = rand() % 4;
+void move() override {
+    pair<int, int> newPosition = getPosition();
 
-    if(!isWayBlocked()){
+    while(isWayBlocked())
+    {
+        int randomNumber = rand() % 4;
+//            switch for each direction with number
+    switch (randomNumber) {
+        case 0:
+            setDirection(Direction::SOUTH);
+            break;
+        case 1:
+            setDirection(Direction::NORTH);
+            break;
+        case 2:
+            setDirection(Direction::WEST);
+            break;
+        case 3:
+            setDirection(Direction::EAST);
+            break;
+    }
+}
+
         switch(getDirection()){
             case Direction::NORTH:
                 setPosition(make_pair(newPosition.first, newPosition.second -1)); //up
@@ -34,32 +52,7 @@ void move() override{
             case Direction::WEST:
                 setPosition(make_pair(newPosition.first-1, newPosition.second)); //left
         }
-    } else {
-//        create a new instance of direction so we can assign it directions
-        Direction newDirection;
-        do {
-//            random numbers between 0-3
-            int randomNumber = rand() %4;
-//            switch for each direction with number
-            switch(randomNumber){
-                case 0:
-                    newDirection = Direction::SOUTH;
-                    break;
-                case 1:
-                    newDirection = Direction::NORTH;
-                    break;
-                case 2:
-                    newDirection = Direction::WEST;
-                    break;
-                case 3:
-                    newDirection = Direction::EAST;
-                    break;
-            }
-//            do this until newDirection and current direction is not the same
-        } while (newDirection == getDirection());
-//        when new direction chosen, set it to bugs direction
-        setDirection(newDirection);
-    }
+
 }
 
 };

@@ -116,7 +116,7 @@ int main() {
             } else if (bug->getType() == "Hopper"){
                 bugShape.setFillColor(Color(0, 250, 250));
             }
-            bugShape.setPosition(100 * bug->getPosition().first + radius, 100*bug->getPosition().second + radius);
+            bugShape.setPosition(100 * bug->getPosition().first + (50-radius), 100*bug->getPosition().second + (50-radius));
             if(bug->getStatus() == "Alive"){
                 window.draw(bugShape);
             }
