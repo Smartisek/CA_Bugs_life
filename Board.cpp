@@ -15,17 +15,21 @@ void Board::drawBoard(sf::RenderWindow &window) {
 }
 
 void Board::drawBugs(vector<Bug *> bugs, sf::RenderWindow &window) {
+
     for(Bug* bug : bugs){
-        int radius = bug->getSize()* 3;
-        sf::CircleShape bugShape(radius);
+        sf::Sprite bugSprite;
+        float scale = static_cast<float>(bug->getSize() * 50.0)/ 1920; //set a scale for bugs
         if(bug->getType() == "Crawler"){
-            bugShape.setFillColor(sf::Color(0,0,250));
+            bugSprite.setTexture(crawlerTexture); //set texture for each bug
         } else if (bug->getType() == "Hopper"){
-            bugShape.setFillColor(sf::Color(0, 250, 250));
+            bugSprite.setTexture(hopperTexture);
         }
-        bugShape.setPosition(100 * bug->getPosition().first + (50-radius), 100*bug->getPosition().second + (50-radius));
+        bugSprite.setOrigin(bugSprite.getTexture()->getSize().x / 2.0f, bugSprite.getTexture()->getSize().y / 2.0f); //center the image
+        bugSprite.setScale(scale, scale); //set scale for image
+        bugSprite.setPosition(100*bug->getPosition().first  + 50, 100*bug->getPosition().second+50); // set position like before 
+
         if(bug->getStatus() == "Alive"){
-            window.draw(bugShape);
+            window.draw(bugSprite);
         }
     }
 }
@@ -118,3 +122,7 @@ vector<Bug*> Board::loadBugsFromFile(){
     }
     return bugs;
 }
+
+
+// https://www.pngwing.com/en/free-png-xyjou/download
+// https://www.pngwing.com/en/free-png-zpydh/download

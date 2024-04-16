@@ -16,8 +16,25 @@ int main() {
 //        board.searchForBug(bugs);
 
     RenderWindow window(VideoMode(1000, 1000), "Bugs Life!");
+    Clock clock; //this will start clock
+    Time timeSinceLastUpdate = Time::Zero; // variable for keeping track of how much time passed, when created zero
+    Time TimePerFrame = seconds(1.f); // set one second between each update
 
     while (window.isOpen()){
+        Time elapsedTime = clock.restart(); // restart the clock
+        timeSinceLastUpdate += elapsedTime; // adding elapsed time since restart
+        while(timeSinceLastUpdate > TimePerFrame){ //if time elapsed is > timeperframe means enough time passed to call move
+            timeSinceLastUpdate -=TimePerFrame;
+            for(Bug* bug : bugs){ //move each bug
+                if(bug->getStatus() == "Alive"){
+                    bug->move();
+                }
+            }
+//                    reset messagePrinted variable to false when clicked so the areInTheSameCell() check is possible again, this variable makes sure
+//                    the message is not printed constantly until they move out
+            messagePrinted = false;
+        }
+
         Event event;
         while (window.pollEvent(event)){
             if(event.type == Event::Closed){
@@ -29,31 +46,18 @@ int main() {
                 board.printFileLifePath(bugs);
                 window.close();
             }
-
-            if(event.type == sf::Event::MouseButtonPressed){
-                if(event.mouseButton.button == sf::Mouse::Left){
-                    for(Bug* bug : bugs){
-                        if(bug->getStatus() == "Alive"){
-                            bug->move();
-                        }
-
-                    }
-//                    reset messagePrinted variable to false when clicked so the areInTheSameCell() check is possible again, this variable makes sure
-//                    the message is not printed constantly until they move out
-                    messagePrinted = false;
-                }
-            }
         }
-//      eat functionality
-        board.eat(bugs, messagePrinted);
-
         window.clear();
+//      eat functionality
+//        board.eat(bugs, messagePrinted);
+
+//        window.clear();
         board.drawBoard(window);
         board.drawBugs(bugs, window);
+        board.eat(bugs, messagePrinted);
 
         window.display();
     }
-
 // since in the beginning we are creating new bugs (NEW) allocating on the HEAP then we need to clear afterwards and delete existing pointers
     for(Bug* bug : bugs){
         delete bug;
@@ -64,3 +68,5 @@ int main() {
 }
 
 // ***** https://www.youtube.com/watch?v=_IzYGiuX8QM
+// ***** https://www.youtube.com/watch?v=TR82JAtFLYI
+

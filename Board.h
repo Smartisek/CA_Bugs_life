@@ -9,7 +9,8 @@
 #include "Bug.h"
 
 class Board {
-
+    sf::Texture crawlerTexture; //textures for drawing bugs
+    sf::Texture hopperTexture;
 private:
     int size = 10;
     std::vector<sf::RectangleShape> background;
@@ -24,6 +25,8 @@ public:
                 background.push_back(shape);
             }
         }
+        if(!crawlerTexture.loadFromFile("crawler.png")){cout << "Error loading image for Crawler" << endl; } //loading bugs
+        if(!hopperTexture.loadFromFile("hopper.png")){cout << "Error loading image for hopper" << endl;}
     }
     void drawBoard(sf::RenderWindow &window);
     void drawBugs(vector<Bug*> bugs, sf::RenderWindow &window);
