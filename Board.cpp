@@ -17,7 +17,7 @@ void Board::drawBoard(sf::RenderWindow &window) {
 void Board::drawBugs(vector<Bug *> bugs, sf::RenderWindow &window) {
     for(Bug* bug : bugs){
         sf::Sprite bugSprite;
-        float scale = static_cast<float>(bug->getSize() *50.0)/ 1920; //set a scale for bugs
+        float scale = static_cast<float>(bug->getSize()*25)/ 1920; //set a scale for bugs
         if(bug->getType() == "Crawler"){
             bugSprite.setTexture(crawlerTexture); //set texture for each bug
         } else if (bug->getType() == "Hopper"){

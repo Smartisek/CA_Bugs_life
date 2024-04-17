@@ -135,6 +135,8 @@ void Bug::eat(vector<Bug*> &bugs){
                     bugs[i]->setStatus(false);
                     bugs[i]->isEatenBy = bugs[j]->getId();
                     erased = true;
+                } else if(bugs[j]->getSize() == bugs[i]->getSize()){
+                    
                 }
             }
         }

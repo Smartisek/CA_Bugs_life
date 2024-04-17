@@ -20,7 +20,7 @@ public:
         for(int r=0; r<size;r++){
             for(int c =0; c<size;c++){
                 sf::RectangleShape shape(sf::Vector2f(100,100));
-                shape.setFillColor((r+c)%2==0?sf::Color::Black:sf::Color(0,120,20));
+                shape.setFillColor((r+c)%2==0?sf::Color(51, 61, 41):sf::Color(101, 109, 74));
                 shape.setPosition(c*100, r*100);
                 background.push_back(shape);
             }

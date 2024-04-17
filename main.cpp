@@ -14,7 +14,7 @@ int main() {
 
 //          functionality for searching for bug inside of board
 //        board.searchForBug(bugs);
-        board.printCells(bugs); 
+        board.printCells(bugs);
 
     RenderWindow window(VideoMode(1000, 1000), "Bugs Life!");
     Clock clock; //this will start clock
@@ -70,4 +70,6 @@ int main() {
 
 // ***** https://www.youtube.com/watch?v=_IzYGiuX8QM
 // ***** https://www.youtube.com/watch?v=TR82JAtFLYI
+// **** https://cplusplus.com/reference/map/map/
+// **** https://sketch.io/sketchpad/
 
