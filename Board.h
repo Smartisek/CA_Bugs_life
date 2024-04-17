@@ -25,7 +25,7 @@ public:
                 background.push_back(shape);
             }
         }
-        if(!crawlerTexture.loadFromFile("crawler.png")){cout << "Error loading image for Crawler" << endl; } //loading bugs
+        if(!crawlerTexture.loadFromFile("crawler.png")){cout << "Error loading image for Crawler" << endl; } //loading bugs image
         if(!hopperTexture.loadFromFile("hopper.png")){cout << "Error loading image for hopper" << endl;}
     }
     void drawBoard(sf::RenderWindow &window);
@@ -34,6 +34,7 @@ public:
     void printFileLifePath(vector<Bug*> &bugs);
     void searchForBug(vector<Bug*> &bugs);
     vector<Bug*> loadBugsFromFile();
+    void printCells(vector<Bug*> &bugs);
 };
 
 

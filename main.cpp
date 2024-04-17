@@ -14,6 +14,7 @@ int main() {
 
 //          functionality for searching for bug inside of board
 //        board.searchForBug(bugs);
+        board.printCells(bugs); 
 
     RenderWindow window(VideoMode(1000, 1000), "Bugs Life!");
     Clock clock; //this will start clock

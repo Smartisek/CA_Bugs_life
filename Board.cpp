@@ -122,6 +122,30 @@ vector<Bug*> Board::loadBugsFromFile(){
     return bugs;
 }
 
+void Board::printCells(vector<Bug*> &bugs){
+    map<pair<int, int>, string> board; //initialize map with position and string
+
+    for(Bug* bug : bugs){ // go through bugs vector and assign their x and y to a variable
+        int x = bug->getPosition().first;
+        int y = bug->getPosition().second;
+        // make pair of the accessed coordinates from bug get position and assign it their information
+        board[make_pair(x,y)] = to_string(bug->getId()) + " " + bug->getType();
+    }
+//create the boards cells
+    for(int i=0; i<size; i++){
+        for(int j=0; j<size;j++){
+            pair<int,int> position = make_pair(i,j); // create a pair of position in the board
+            if(board.count(position)){ //if the board map already contains this position that means bug is in there so we print occupied by
+                //the count() function returns 1 if the key is inside of a map so true
+                cout << "Cell ("<<i<< ", "<<j<< ") : " << board[position] << endl;
+            } else{ //else cell is empty
+                cout << "Cell ("<<i<< ", "<<j<< ") : Empty" << endl;
+            }
+        }
+    }
+
+}
+
 
 // https://www.pngwing.com/en/free-png-xyjou/download
 // https://www.pngwing.com/en/free-png-zpydh/download
