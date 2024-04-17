@@ -15,7 +15,12 @@ enum class Direction{
     NORTH = 1,
     EAST = 2,
     SOUTH = 3,
-    WEST = 4
+    WEST = 4,
+    NORTHEAST = 5, //adding another directions for my third bug to go diagonally
+    NORTHWEST = 6,
+    SOUTHEAST = 7,
+    SOUTHWEST = 8
+
 };
 
 

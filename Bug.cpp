@@ -86,11 +86,13 @@ void Bug::setDirection(Direction directionNew) {
 bool Bug::isWayBlocked() const{
 //    instances with current position and direction
     pair<int,int> currentPosition = getPosition();
-    Direction currentDirrection = getDirection();
+    Direction currentDirection = getDirection();
     int boardSize =10;
-// check for edges, if any of these is true then return true meaning bug is on the edge cant go further
-    if((currentPosition.first == 0 && currentDirrection == Direction::WEST) || (currentPosition.first == boardSize-1 && currentDirrection ==Direction::EAST) ||
-            (currentPosition.second == 0 && currentDirrection == Direction::NORTH) || (currentPosition.second == boardSize-1 && currentDirrection == Direction::SOUTH)){
+// check for edges, if any of these is true then return true meaning bug is on the edge cant go further, even if bug is going southwest and is on the west edge it needs to change direction
+    if((currentPosition.first == 0 && (currentDirection == Direction::WEST || currentDirection == Direction::NORTHWEST || currentDirection == Direction::SOUTHWEST)) ||
+    (currentPosition.first == boardSize - 1 && (currentDirection == Direction::EAST || currentDirection == Direction::NORTHEAST || currentDirection == Direction::SOUTHEAST)) ||
+       (currentPosition.second == 0 && (currentDirection == Direction::NORTH || currentDirection == Direction::NORTHWEST || currentDirection == Direction::NORTHEAST)) ||
+       (currentPosition.second == boardSize - 1 && (currentDirection == Direction::SOUTH || currentDirection == Direction::SOUTHEAST || currentDirection == Direction::SOUTHWEST))){
         return true;
     } else {
 //        if any of above condition is not met return false, nothing is blocking bug
@@ -105,6 +107,10 @@ string Bug::directionToString(Direction direction){
         case Direction::EAST: return "East";
         case Direction::SOUTH: return "South";
         case Direction::WEST: return "West";
+        case Direction::NORTHEAST: return "NorthEast";
+        case Direction::NORTHWEST: return "NorthWest";
+        case Direction::SOUTHEAST: return "SouthEast";
+        case Direction::SOUTHWEST: return "SouthWest";
         default: return "Unknown";
     }
 }
@@ -135,8 +141,6 @@ void Bug::eat(vector<Bug*> &bugs){
                     bugs[i]->setStatus(false);
                     bugs[i]->isEatenBy = bugs[j]->getId();
                     erased = true;
-                } else if(bugs[j]->getSize() == bugs[i]->getSize()){
-                    
                 }
             }
         }

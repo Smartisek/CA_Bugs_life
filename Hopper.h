@@ -55,6 +55,7 @@ public:
             case Direction::WEST:
                 newPosition.first-=getHopLength();
                 if(newPosition.first <=0){newPosition.first=0;}
+                break;
         }
 //        set the new position
         setPosition(newPosition);

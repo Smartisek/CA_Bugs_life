@@ -38,7 +38,6 @@ void move() override {
             break;
     }
 }
-
         switch(getDirection()){
             case Direction::NORTH:
                 setPosition(make_pair(newPosition.first, newPosition.second -1)); //up

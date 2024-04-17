@@ -7,6 +7,7 @@
 #include "Board.h"
 #include "Crawler.h"
 #include "Hopper.h"
+#include "Slider.h"
 
 void Board::drawBoard(sf::RenderWindow &window) {
     for(sf::RectangleShape &r : background){
@@ -22,6 +23,8 @@ void Board::drawBugs(vector<Bug *> bugs, sf::RenderWindow &window) {
             bugSprite.setTexture(crawlerTexture); //set texture for each bug
         } else if (bug->getType() == "Hopper"){
             bugSprite.setTexture(hopperTexture);
+        } else if(bug->getType() == "Slider"){
+            bugSprite.setTexture(sliderTexture);
         }
         bugSprite.setOrigin(bugSprite.getTexture()->getSize().x / 2.0f, bugSprite.getTexture()->getSize().y / 2.0f); //center the image
         bugSprite.setScale(scale, scale); //set scale for image
@@ -112,6 +115,8 @@ vector<Bug*> Board::loadBugsFromFile(){
             bugs.push_back(new Crawler(id, x, y, static_cast<Direction>(direction), size));
         } else if(type == "H"){
             bugs.push_back(new Hopper(id, x, y, static_cast<Direction>(direction), size, hopLength));
+        } else if(type == "S"){
+            bugs.push_back(new Slider(id, x, y, static_cast<Direction>(direction), size));
         }
     }
 //    after reading data, close the file
