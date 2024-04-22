@@ -34,7 +34,7 @@ public:
                     setDirection(Direction::WEST);
                     break;
                 case 3:
-                    setDirection(Direction::WEST);
+                    setDirection(Direction::EAST);
                     break;
             }
         }

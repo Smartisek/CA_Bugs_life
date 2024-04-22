@@ -18,7 +18,7 @@ void Board::drawBoard(sf::RenderWindow &window) {
 void Board::drawBugs(vector<Bug *> bugs, sf::RenderWindow &window) {
     for(Bug* bug : bugs){
         sf::Sprite bugSprite;
-        float scale = static_cast<float>(bug->getSize()*25)/ 1920; //set a scale for bugs
+        float scale = static_cast<float>(bug->getSize()*50)/ 1920; //set a scale for bugs
         if(bug->getType() == "Crawler"){
             bugSprite.setTexture(crawlerTexture); //set texture for each bug
         } else if (bug->getType() == "Hopper"){
@@ -26,7 +26,7 @@ void Board::drawBugs(vector<Bug *> bugs, sf::RenderWindow &window) {
         } else if(bug->getType() == "Slider"){
             bugSprite.setTexture(sliderTexture);
         }
-        bugSprite.setOrigin(bugSprite.getTexture()->getSize().x / 2.0f, bugSprite.getTexture()->getSize().y / 2.0f); //center the image
+        bugSprite.setOrigin(bugSprite.getGlobalBounds().width/2.0f, bugSprite.getGlobalBounds().height /2.0f); //center the image
         bugSprite.setScale(scale, scale); //set scale for image
         bugSprite.setPosition(100*bug->getPosition().first  + 50, 100*bug->getPosition().second+ 50); // set position like before
 

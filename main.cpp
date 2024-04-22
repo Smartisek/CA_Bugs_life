@@ -3,6 +3,7 @@
 #include "Bug.h"
 #include "vector"
 #include "Board.h"
+#include "MainMenu.h"
 using namespace std;
 using namespace sf;
 
@@ -17,6 +18,7 @@ int main() {
         board.printCells(bugs);
 
     RenderWindow window(VideoMode(1000, 1000), "Bugs Life!");
+    MainMenu menu(window.getSize().x, window.getSize().y);
     Clock clock; //this will start clock
     Time timeSinceLastUpdate = Time::Zero; // variable for keeping track of how much time passed, when created zero
     Time TimePerFrame = seconds(1.f); // set one second between each update
@@ -36,26 +38,62 @@ int main() {
             messagePrinted = false;
         }
 
-        Event event;
-        while (window.pollEvent(event)){
-            if(event.type == Event::Closed){
-//                before closing application, loop through each bugs path taken and print it
-//                for(int i =0; i < bugs.size(); i++){
-//                    cout << bugs[i]->printPath();
-//                }
-//              when application closed print paths into date_out file
-                board.printFileLifePath(bugs);
-                window.close();
+//        Event event;
+//        while (window.pollEvent(event)){
+//            if(event.type == Event::Closed){
+////                before closing application, loop through each bugs path taken and print it
+////                for(int i =0; i < bugs.size(); i++){
+////                    cout << bugs[i]->printPath();
+////                }
+////              when application closed print paths into date_out file
+//                board.printFileLifePath(bugs);
+//                window.close();
+//            }
+//        }
+
+        Event menuEvent;
+        while(window.pollEvent(menuEvent)){
+            switch (menuEvent.type) {
+                case Event::KeyReleased:
+                    switch (menuEvent.key.code) {
+                        case sf::Keyboard::Up:   //if we press arrow up, go up
+                            menu.MoveUp();
+                            break;
+                        case sf::Keyboard::Down: // if we press arrow down, go down
+                            menu.MoveDown();
+                            break;
+                            
+                        case sf::Keyboard::Return:
+                            switch (menu.GetPressedItem()) {
+                                case 0:
+                                    cout << "Start button pressed" << endl;
+                                    break;
+                                case 1:
+                                    cout << "About button pressed" << endl;
+                                    break;
+                                case 2:
+                                    window.close();
+                                    break;
+                            }
+                            break;
+                    }
+                    break;
+                case sf::Event::Closed:
+                    board.printFileLifePath(bugs);
+                    window.close();
+                    break;
             }
         }
         window.clear();
+        menu.MenuDraw(window);
 //      eat functionality
 //        board.eat(bugs, messagePrinted);
 
 //        window.clear();
-        board.drawBoard(window);
-        board.drawBugs(bugs, window);
-        board.eat(bugs, messagePrinted);
+
+//        board.drawBoard(window);
+//        board.drawBugs(bugs, window);
+//        board.eat(bugs, messagePrinted);
 
         window.display();
     }
@@ -72,4 +110,5 @@ int main() {
 // ***** https://www.youtube.com/watch?v=TR82JAtFLYI
 // **** https://cplusplus.com/reference/map/map/
 // **** https://sketch.io/sketchpad/
-
+// **** https://www.youtube.com/watch?v=bOG8667yePY
+// **** https://www.1001freefonts.com/
