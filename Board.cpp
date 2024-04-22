@@ -16,11 +16,13 @@ void Board::drawBoard(sf::RenderWindow &window) {
 }
 
 void Board::drawBugs(const vector<Bug *>& bugs, sf::RenderWindow &window) {
+//    iterate through bugs vector
     for(Bug* bug : bugs){
-        sf::Sprite bugSprite;
+        sf::Sprite bugSprite; // create a sprite for each bug
         float scale = static_cast<float>(bug->getSize()*50)/ 1920; //set a scale for bugs
+//        set textures based on bugs types
         if(bug->getType() == "Crawler"){
-            bugSprite.setTexture(crawlerTexture); //set texture for each bug
+            bugSprite.setTexture(crawlerTexture);
         } else if (bug->getType() == "Hopper"){
             bugSprite.setTexture(hopperTexture);
         } else if(bug->getType() == "Slider"){
@@ -30,6 +32,7 @@ void Board::drawBugs(const vector<Bug *>& bugs, sf::RenderWindow &window) {
         bugSprite.setScale(scale, scale); //set scale for image
         bugSprite.setPosition(100*bug->getPosition().first  + 50, 100*bug->getPosition().second+ 50); // set position like before
 
+//        draw only the bugs that are alive
         if(bug->getStatus() == "Alive"){
             window.draw(bugSprite);
         }
@@ -74,24 +77,25 @@ void Board::printFileLifePath(vector<Bug*> &bugs){
 void Board::searchForBug(vector<Bug*> &bugs){
     cout << "Enter bugs ID: ";
     int bugId;
-    cin >> bugId;
-    for(Bug* bug : bugs){
+    cin >> bugId; // get users input bugs id
+    for(Bug* bug : bugs){ //go through bugs and find bug with that id
         if(bug->getId() == bugId){
-            cout << bug->printBug() << endl;
+            cout << bug->printBug() << endl; //print the bugs information
         }
     }
 }
 
 vector<Bug*> Board::loadBugsFromFile(){
-    vector<Bug*> bugs;
-    ifstream bugFile("bugs.txt");
+    vector<Bug*> bugs; //create vector bugs with pointer to bugs
+    ifstream bugFile("bugs.txt"); //open the file
     if(!bugFile.is_open()){
         cout << "File failed to open" << endl;
     }
+//    create variables for storing information taken from file
     string line;
     string type, idT, xT, yT, directionT, sizeT, hopLengthT;
     int id, x, y, direction, size, hopLength;
-//  reading from the file
+//  reading from the file until there is still information
     while(getline(bugFile, line)) {
         stringstream ss(line);
         getline(ss, type, ';');
@@ -106,6 +110,7 @@ vector<Bug*> Board::loadBugsFromFile(){
         getline(ss, sizeT, ';');
         size = stoi(sizeT);
         hopLength =0; //default hop length
+
         if(getline(ss, hopLengthT, ';') && !hopLengthT.empty()){
             hopLength = stoi(hopLengthT);
         }
@@ -120,6 +125,7 @@ vector<Bug*> Board::loadBugsFromFile(){
     }
 //    after reading data, close the file
     bugFile.close();
+//    print all the bugs read from file
     for(int i=0; i<bugs.size(); i++){
         cout << bugs[i]->printBug() << endl;
     }

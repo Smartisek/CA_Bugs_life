@@ -17,6 +17,7 @@ private:
     std::vector<sf::RectangleShape> background;
 
 public:
+//    Constructor for board, creating the format, code from our cpp class
     Board(){
         for(int r=0; r<size;r++){
             for(int c =0; c<size;c++){
@@ -26,9 +27,10 @@ public:
                 background.push_back(shape);
             }
         }
-        if(!crawlerTexture.loadFromFile("crawler.png")){cout << "Error loading image for Crawler" << endl;} //loading bugs image
-        if(!hopperTexture.loadFromFile("hopper.png")){cout << "Error loading image for hopper" << endl;}
-        if(!sliderTexture.loadFromFile("slider.png")){cout << "Error loading immage for slider" << endl;}
+//       load all bugs images
+        if(!crawlerTexture.loadFromFile("images/crawler.png")){cout << "Error loading image for Crawler" << endl;}
+        if(!hopperTexture.loadFromFile("images/hopper.png")){cout << "Error loading image for hopper" << endl;}
+        if(!sliderTexture.loadFromFile("images/slider.png")){cout << "Error loading image for slider" << endl;}
     }
     void drawBoard(sf::RenderWindow &window);
     void drawBugs(const vector<Bug*>& bugs, sf::RenderWindow &window);

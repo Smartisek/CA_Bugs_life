@@ -15,7 +15,8 @@ class MainMenu {
 private:
     int selectedIndex;
     Font font;
-    Text menu[MAX_NUMBER_OF_ITEMS];
+    Text menu[MAX_NUMBER_OF_ITEMS]; // array of type text
+    Text navigation;
     sf::Texture backgroundTexture;
     sf::Sprite backgroundSprite;
 
