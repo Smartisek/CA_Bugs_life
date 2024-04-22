@@ -21,6 +21,7 @@ public:
     void MoveUp();
     void MoveDown();
     int GetPressedItem();
+    void drawAboutPage(RenderWindow &window);
 };
 
 

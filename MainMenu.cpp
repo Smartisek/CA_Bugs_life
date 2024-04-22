@@ -53,5 +53,13 @@ void MainMenu::MoveDown() {
     }
 }
 
+void MainMenu::drawAboutPage(sf::RenderWindow &window) {
+    Text aboutText;
+    aboutText.setFont(font);
+    aboutText.setString("When pressing start, the simulation will start and bugs will start moving eating each other. + \n Press ESC to go to MAIN MENU.");
+    aboutText.setPosition(window.getSize().x/2, window.getSize().y/2);
+    window.draw(aboutText);
+}
+
 
 

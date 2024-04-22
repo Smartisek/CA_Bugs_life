@@ -12,7 +12,8 @@ int main() {
     Board board; //instance of a board class
     vector<Bug*> bugs = board.loadBugsFromFile(); //creating a vector with reference of type pointer to Bug, meaning it can point to any derived class like hopper and crawler
     bool messagePrinted = false; // for stopping printing ton of messages a second when collision
-
+    bool gameStarted = false;
+    bool aboutPressed = false;
 //          functionality for searching for bug inside of board
 //        board.searchForBug(bugs);
         board.printCells(bugs);
@@ -53,48 +54,56 @@ int main() {
 
         Event menuEvent;
         while(window.pollEvent(menuEvent)){
-            switch (menuEvent.type) {
-                case Event::KeyReleased:
-                    switch (menuEvent.key.code) {
-                        case sf::Keyboard::Up:   //if we press arrow up, go up
-                            menu.MoveUp();
-                            break;
-                        case sf::Keyboard::Down: // if we press arrow down, go down
-                            menu.MoveDown();
-                            break;
-                            
-                        case sf::Keyboard::Return:
-                            switch (menu.GetPressedItem()) {
-                                case 0:
-                                    cout << "Start button pressed" << endl;
-                                    break;
-                                case 1:
-                                    cout << "About button pressed" << endl;
-                                    break;
-                                case 2:
-                                    window.close();
-                                    break;
-                            }
-                            break;
-                    }
-                    break;
-                case sf::Event::Closed:
-                    board.printFileLifePath(bugs);
-                    window.close();
-                    break;
+            if(menuEvent.type == Event::Closed){
+                board.printFileLifePath(bugs);
+                window.close();
             }
+            if(!gameStarted){
+                switch (menuEvent.type) {
+                    case Event::KeyReleased:
+                        switch (menuEvent.key.code) {
+                            case sf::Keyboard::Up:   //if we press arrow up, go up
+                                menu.MoveUp();
+                                break;
+                            case sf::Keyboard::Down: // if we press arrow down, go down
+                                menu.MoveDown();
+                                break;
+
+                            case sf::Keyboard::Return:
+                                switch (menu.GetPressedItem()) {
+                                    case 0:
+                                        cout << "Start button pressed" << endl;
+                                        gameStarted = true;
+                                        break;
+                                    case 1:
+                                        cout << "About button pressed" << endl;
+                                        aboutPressed = true;
+                                        break;
+                                    case 2:
+                                        window.close();
+                                        break;
+                                }
+                                break;
+                            case sf::Keyboard::Escape:
+                                if(aboutPressed){
+                                    aboutPressed = false;
+                                }
+                        }
+                        break;
+                }
+            }
+
         }
         window.clear();
-        menu.MenuDraw(window);
-//      eat functionality
-//        board.eat(bugs, messagePrinted);
-
-//        window.clear();
-
-//        board.drawBoard(window);
-//        board.drawBugs(bugs, window);
-//        board.eat(bugs, messagePrinted);
-
+        if(!gameStarted && !aboutPressed){
+            menu.MenuDraw(window);
+        } else if(gameStarted){
+            board.drawBoard(window);
+            board.drawBugs(bugs, window);
+            board.eat(bugs, messagePrinted);
+        } else if(aboutPressed){
+            menu.drawAboutPage(window);
+        }
         window.display();
     }
 // since in the beginning we are creating new bugs (NEW) allocating on the HEAP then we need to clear afterwards and delete existing pointers
