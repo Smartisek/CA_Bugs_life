@@ -70,7 +70,7 @@ void MainMenu::drawAboutPage(sf::RenderWindow &window) {
 
     FloatRect aboutRect = aboutText.getLocalBounds();
     aboutText.setOrigin(aboutRect.left + aboutRect.width/2.0f, aboutRect.top + aboutRect.height/2.0f);
-    aboutText.setPosition(sf::Vector2f(window.getSize().x/2.0f, window.getSize().y/2.0f));
+    aboutText.setPosition(sf::Vector2f(window.getSize().x/2.0f, window.getSize().y/2.0f+50));
 
     FloatRect goBackRect = goBack.getLocalBounds();
     goBack.setOrigin(goBackRect.left + aboutRect.width/2.0f, goBackRect.top + goBackRect.height/2.0f);
@@ -84,12 +84,14 @@ void MainMenu::drawAboutPage(sf::RenderWindow &window) {
 void MainMenu::finalPage(sf::RenderWindow &window, vector<Bug *> &bugs) {
     Text final;
     final.setFont(font);
-    FloatRect finalRect = final.getLocalBounds();
+    FloatRect finalRect = final.getLocalBounds(); // get size of the text
+    final.setOrigin(finalRect.left + finalRect.width/2.0f, finalRect.top + finalRect.height/2.0f);
     final.setPosition(window.getSize().x/2 - finalRect.left + finalRect.width/2, window.getSize().y/2);
     Bug* lastAlive = nullptr; // initialize a pointer for last alive bug
+    //iterate through bugs and find last one alive
     for(Bug* bug : bugs){
         if(bug->getStatus() == "Alive"){
-            lastAlive = bug;
+            lastAlive = bug; //when last alive found put it into lastAlive pointer
         }
     }
 

@@ -33,7 +33,7 @@ int main() {
             aliveBugs = 0; //reset to zero at start of a frame
             for(Bug* bug : bugs){ //move each bug
                 if(bug->getStatus() == "Alive"){
-                    aliveBugs++;
+                    aliveBugs++; //keep count of alive bugs
                     bug->move();
                 }
             }
@@ -95,7 +95,7 @@ int main() {
         } else {
             menu.drawAboutPage(window);
         }
-        if(aliveBugs == 1){
+        if(aliveBugs == 1){ //when there is only one alive bring final page with its information
             menu.finalPage(window, bugs);
         }
         window.display();
