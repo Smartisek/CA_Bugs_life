@@ -21,7 +21,7 @@ public:
         for(int r=0; r<size;r++){
             for(int c =0; c<size;c++){
                 sf::RectangleShape shape(sf::Vector2f(100,100));
-                shape.setFillColor((r+c)%2==0?sf::Color(51, 61, 41):sf::Color(101, 109, 74));
+                shape.setFillColor((r+c)%2==0?sf::Color(238, 240, 242):sf::Color(162, 153, 158));
                 shape.setPosition(c*100, r*100);
                 background.push_back(shape);
             }
@@ -31,7 +31,7 @@ public:
         if(!sliderTexture.loadFromFile("slider.png")){cout << "Error loading immage for slider" << endl;}
     }
     void drawBoard(sf::RenderWindow &window);
-    void drawBugs(vector<Bug*> bugs, sf::RenderWindow &window);
+    void drawBugs(const vector<Bug*>& bugs, sf::RenderWindow &window);
     void eat(vector<Bug*> &bugs, bool &messagePrinted);
     void printFileLifePath(vector<Bug*> &bugs);
     void searchForBug(vector<Bug*> &bugs);

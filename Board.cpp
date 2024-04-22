@@ -15,7 +15,7 @@ void Board::drawBoard(sf::RenderWindow &window) {
     }
 }
 
-void Board::drawBugs(vector<Bug *> bugs, sf::RenderWindow &window) {
+void Board::drawBugs(const vector<Bug *>& bugs, sf::RenderWindow &window) {
     for(Bug* bug : bugs){
         sf::Sprite bugSprite;
         float scale = static_cast<float>(bug->getSize()*50)/ 1920; //set a scale for bugs
@@ -48,7 +48,6 @@ void Board::eat(vector<Bug*> &bugs, bool &messagePrinted){
                     cout << "Bugs " << bug1->getId() << " and " << bug2->getId() << " in the same cell: " << bug1->positionToString(bug1->getPosition()) << endl;
                     Bug::eat(bugs);
                     messagePrinted = true;
-//                    eat(vector<>);
                 }
             }
 

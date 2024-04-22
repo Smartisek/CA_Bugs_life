@@ -122,7 +122,7 @@ bool Bug::areInSameCell(const Bug& bug1,const Bug& bug2){
 
 void Bug::eat(vector<Bug*> &bugs){
     for(int i=0; i<bugs.size();i++){
-        bool erased = false;
+        bool erased = false; //helps to prevent unnecessary comparisons by skipping already erased bugs
         for(int j=0;j<bugs.size() && !erased;j++){
             if(i!=j && areInSameCell(*bugs[i], *bugs[j])){
                 if(bugs[i]->getSize() > bugs[j]->getSize()){

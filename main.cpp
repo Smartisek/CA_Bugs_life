@@ -14,11 +14,12 @@ int main() {
     bool messagePrinted = false; // for stopping printing ton of messages a second when collision
     bool gameStarted = false;
     bool aboutPressed = false;
+    int aliveBugs;
 //          functionality for searching for bug inside of board
 //        board.searchForBug(bugs);
         board.printCells(bugs);
 
-    RenderWindow window(VideoMode(1000, 1000), "Bugs Life!");
+    RenderWindow window(VideoMode(1000.00, 1000.00), "Bugs Life!");
     MainMenu menu(window.getSize().x, window.getSize().y);
     Clock clock; //this will start clock
     Time timeSinceLastUpdate = Time::Zero; // variable for keeping track of how much time passed, when created zero
@@ -29,8 +30,10 @@ int main() {
         timeSinceLastUpdate += elapsedTime; // adding elapsed time since restart
         while(timeSinceLastUpdate > TimePerFrame){ //if time elapsed is > timeperframe means enough time passed to call move
             timeSinceLastUpdate -=TimePerFrame;
+            aliveBugs = 0; //reset to zero at start of a frame
             for(Bug* bug : bugs){ //move each bug
                 if(bug->getStatus() == "Alive"){
+                    aliveBugs++;
                     bug->move();
                 }
             }
@@ -39,18 +42,6 @@ int main() {
             messagePrinted = false;
         }
 
-//        Event event;
-//        while (window.pollEvent(event)){
-//            if(event.type == Event::Closed){
-////                before closing application, loop through each bugs path taken and print it
-////                for(int i =0; i < bugs.size(); i++){
-////                    cout << bugs[i]->printPath();
-////                }
-////              when application closed print paths into date_out file
-//                board.printFileLifePath(bugs);
-//                window.close();
-//            }
-//        }
 
         Event menuEvent;
         while(window.pollEvent(menuEvent)){
@@ -101,8 +92,11 @@ int main() {
             board.drawBoard(window);
             board.drawBugs(bugs, window);
             board.eat(bugs, messagePrinted);
-        } else if(aboutPressed){
+        } else {
             menu.drawAboutPage(window);
+        }
+        if(aliveBugs == 1){
+            menu.finalPage(window, bugs);
         }
         window.display();
     }
