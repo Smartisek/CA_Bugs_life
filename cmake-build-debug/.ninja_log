@@ -62,3 +62,7 @@
 10	606	7355126155842036	CMakeFiles/sfml_002.dir/MainMenu.cpp.obj	ace22183a41c27ef
 4	671	7355126156484409	CMakeFiles/sfml_002.dir/main.cpp.obj	b60a0629065537e8
 671	1177	7355126161474708	sfml_002.exe	db3bd33debc22eb8
+13	706	7355665544921370	CMakeFiles/sfml_002.dir/MainMenu.cpp.obj	ace22183a41c27ef
+3	721	7355665545074375	CMakeFiles/sfml_002.dir/main.cpp.obj	b60a0629065537e8
+9	851	7355665546358498	CMakeFiles/sfml_002.dir/Board.cpp.obj	975ba1ecf7c96b9d
+851	1635	7355665554128531	sfml_002.exe	db3bd33debc22eb8

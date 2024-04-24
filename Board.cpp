@@ -155,7 +155,3 @@ void Board::printCells(vector<Bug*> &bugs){
     }
 
 }
-
-
-// https://www.pngwing.com/en/free-png-xyjou/download
-// https://www.pngwing.com/en/free-png-zpydh/download
