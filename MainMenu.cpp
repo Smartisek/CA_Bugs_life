@@ -75,7 +75,7 @@ void MainMenu::drawAboutPage(sf::RenderWindow &window) { //about page explaining
     goBack.setFont(font);
 
     goBack.setString("Press ESC to go back to MAIN MENU.");
-    aboutText.setString("When pressing start the simulation will start and \n bugs will start moving eating each other.");
+    aboutText.setString("CONTROL SUPERBUG WITH ARROWS.");
 //  centering the text
     FloatRect aboutRect = aboutText.getLocalBounds();
     aboutText.setOrigin(aboutRect.left + aboutRect.width/2.0f, aboutRect.top + aboutRect.height/2.0f);

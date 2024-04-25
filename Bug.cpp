@@ -143,6 +143,21 @@ void Bug::eat(vector<Bug*> &bugs){
                     bugs[i]->setStatus(false);
                     bugs[i]->isEatenBy = bugs[j]->getId();
                     erased = true;
+                } else if(bugs[i]->getSize() == bugs[j]->getSize()){ //in case the bugs are the same size, pick randomly who wins 
+                    int randomNum = rand()%2;
+                    switch (randomNum) {
+                        case 1:
+                            bugs[i]->setSize(bugs[i]->getSize() + bugs[j]->getSize());
+                            bugs[j]->setStatus(false);
+                            bugs[j]->isEatenBy = bugs[i]->getId();
+                            erased = true;
+                            break;
+                        case 2:
+                            bugs[j]->setSize(bugs[j]->getSize() + bugs[i]->getSize());
+                            bugs[i]->setStatus(false);
+                            bugs[i]->isEatenBy = bugs[j]->getId();
+                            erased = true;
+                    }
                 }
             }
         }

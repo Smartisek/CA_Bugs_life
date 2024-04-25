@@ -7,6 +7,7 @@
 #include "SuperBug.h"
 using namespace std;
 using namespace sf;
+
 ////Resources at the end of main
 
 
@@ -160,5 +161,7 @@ Geek projects (2022), Main Menu in C++ using SFML library, [source code]: https:
 font used in this project: MATRICODE.ttf from: https://www.1001freefonts.com/index.php
  *
  all graphics created by myself using png sketcher: https://sketch.io/sketchpad/
+ *
+ en.sfml-dev.org, detecting key pressed, [source code]: https://en.sfml-dev.org/forums/index.php?topic=20802.0
  */
 
