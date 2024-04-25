@@ -21,11 +21,11 @@ public:
     Board();
     void drawBoard(sf::RenderWindow &window);
     void drawBugs(const vector<Bug*>& bugs, sf::RenderWindow &window);
-    void eat(vector<Bug*> &bugs, bool &messagePrinted);
-    void printFileLifePath(vector<Bug*> &bugs);
-    void searchForBug(vector<Bug*> &bugs);
-    vector<Bug*> loadBugsFromFile();
-    void printCells(vector<Bug*> &bugs);
+    static void eat(vector<Bug*> &bugs, bool &messagePrinted);
+    static void printFileLifePath(vector<Bug*> &bugs);
+    static void searchForBug(vector<Bug*> &bugs);
+    static vector<Bug*> loadBugsFromFile();
+    void printCells(vector<Bug*> &bugs) const;
 
 };
 

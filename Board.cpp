@@ -27,7 +27,7 @@ Board::Board() {
 }
 
 void Board::drawBoard(sf::RenderWindow &window) {
-    for(sf::RectangleShape &r : background){
+    for(sf::RectangleShape &r : background){ //go through vector of shapes and draw them all
         window.draw(r);
     }
 }
@@ -151,7 +151,7 @@ vector<Bug*> Board::loadBugsFromFile(){
     return bugs;
 }
 
-void Board::printCells(vector<Bug*> &bugs){
+void Board::printCells(vector<Bug*> &bugs) const{
     map<pair<int, int>, string> board; //initialize map with position and string
 
     for(Bug* bug : bugs){ // go through bugs vector and assign their x and y to a variable

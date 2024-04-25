@@ -47,7 +47,7 @@ public:
     void setDirection(Direction directionNew);
     void setSize(int size);
     void setStatus(bool status);
-    
+
     string directionToString(Direction direction);
     static string positionToString(pair<int,int>);
     string printBug();

@@ -7,22 +7,28 @@
 #include "SuperBug.h"
 using namespace std;
 using namespace sf;
+////Resources at the end of main
 
 
 int main() {
     Board board; //instance of a board class
-    vector<Bug*> bugs = board.loadBugsFromFile(); //creating a vector with reference of type pointer to Bug, meaning it can point to any derived class like hopper and crawler
-    auto* superBug = new SuperBug(110, 5, 5, Direction::NORTH, 3);
+    vector<Bug*> bugs = Board::loadBugsFromFile(); //creating a vector with reference of type pointer to Bug, meaning it can point to any derived class like hopper and crawler
+    auto* superBug = new SuperBug(110, 5, 5, Direction::NORTH, 3); //initialize super bug and push it into vector
     bugs.push_back(superBug);
+
+
     bool messagePrinted = false; // for stopping printing ton of messages a second when collision
     bool gameStarted = false; //boolean for starting the game
     bool aboutPressed = false;  //boolean for option menu
     bool superBugMove = false; //boolean for moving superBug
+
+
     int aliveBugs; //int to keep track of how many bugs are alive, to be able to check when there is only one left
 ////         functionality for searching for bug inside of board
 //        board.searchForBug(bugs);
     board.printCells(bugs);
 
+////  GameState
     RenderWindow window(VideoMode(1000.00, 1000.00), "Bugs Life!"); //create the window
     window.setKeyRepeatEnabled(false);
     MainMenu menu(window.getSize().x, window.getSize().y); //create main menu instance
@@ -51,10 +57,10 @@ int main() {
         }
 
 
-        Event menuEvent;
+        Event menuEvent{}; //create an event for menu state
         while(window.pollEvent(menuEvent)){
             if(menuEvent.type == Event::Closed){
-                board.printFileLifePath(bugs); //when window is closed, print all the bugs path taken during window open time
+                Board::printFileLifePath(bugs); //when window is closed, print all the bugs path taken during window open time
                 window.close();
             }
             if(!gameStarted){ //if game has not started yet, be able to go through menu
@@ -84,7 +90,7 @@ int main() {
                                 }
                                 break;
                             case sf::Keyboard::Escape: // if we are inside about page and press esc, go back to main menu
-                                if(aboutPressed){
+                                if(aboutPressed){ //if boolean is true and we click esc, set it to false which brings us back to main menu
                                     aboutPressed = false;
                                 }
                         }
@@ -131,7 +137,7 @@ int main() {
         window.display(); //display all
 
     }
-// since in the beginning we are creating new bugs (NEW) allocating on the HEAP then we need to clear afterwards and delete existing pointers
+// since in the beginning we are creating new bugs (NEW) allocating on the HEAP then we need to clear afterward and delete existing pointers
     for(Bug* bug : bugs){
         delete bug;
     }
@@ -140,9 +146,19 @@ int main() {
     return 0;
 }
 
-// ***** https://www.youtube.com/watch?v=_IzYGiuX8QM
-// ***** https://www.youtube.com/watch?v=TR82JAtFLYI
-// **** https://cplusplus.com/reference/map/map/
-// **** https://sketch.io/sketchpad/
-// **** https://www.youtube.com/watch?v=bOG8667yePY
-// **** https://www.1001freefonts.com/
+/**
+ * ***** REFERENCES *****
+ *
+CU Boulder Data Structures CSCI 2270 (2018), Data Structures Tutorial - 14 - How to Read in a Comma Seperated .txt File in c++, [source code]: https://www.youtube.com/watch?v=_IzYGiuX8QM
+ *
+Mister Vriesinga (2023), C++ SFML Clocks and Time, [source code]: https://www.youtube.com/watch?v=TR82JAtFLYI
+ *
+cplusplus.com, std::map, [source code]: https://cplusplus.com/reference/map/map/
+ *
+Geek projects (2022), Main Menu in C++ using SFML library, [source code]: https://www.youtube.com/watch?v=bOG8667yePY
+ *
+font used in this project: MATRICODE.ttf from: https://www.1001freefonts.com/index.php
+ *
+ all graphics created by myself using png sketcher: https://sketch.io/sketchpad/
+ */
+
