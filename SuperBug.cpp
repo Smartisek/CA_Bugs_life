@@ -4,6 +4,7 @@
 
 #include "SuperBug.h"
 
+SuperBug::SuperBug(int id, int x, int y, Direction direction, int size) : Crawler(id, x, y, direction, size){};
 
 string SuperBug::getType() const {
     return "Superbug";

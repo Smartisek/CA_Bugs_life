@@ -34,25 +34,25 @@ private:
     list<pair<int, int>> path;
     int isEatenBy = -1; //default -1, later if eaten gets assigned id of a bug that ate current bug
 public:
-    Bug(int id, int x, int y, Direction direction, int size)
-            : id(id), position(x,y), direction(direction), size(size), alive(true){
-    }
+    Bug(int id, int x, int y, Direction direction, int size);
+    //// Getters
     int getId() const;
+    Direction getDirection() const;
+    int getSize() const;
+    string getStatus() const;
     pair<int,int> getPosition() const;
+    virtual string getType() const = 0;
+    //// Setters
     void setPosition(pair<int, int> positionNew);
     void setDirection(Direction directionNew);
     void setSize(int size);
     void setStatus(bool status);
-    Direction getDirection() const;
-    int getSize() const;
-    string getStatus() const;
+    
     string directionToString(Direction direction);
     static string positionToString(pair<int,int>);
     string printBug();
     bool isWayBlocked() const;
-    virtual string getType() const = 0;
     virtual void move () = 0;
-    list<pair<int,int>> getPathTaken() const;
     string printPath();
     static bool areInSameCell(const Bug& bug1, const Bug& bug2);
     static void eat(vector<Bug*> &bugs);

@@ -9,6 +9,23 @@
 #include "Hopper.h"
 #include "Slider.h"
 
+//constructor
+Board::Board() {
+    for(int r=0; r<size;r++){
+        for(int c =0; c<size;c++){
+            sf::RectangleShape shape(sf::Vector2f(100,100));
+            shape.setFillColor((r+c)%2==0?sf::Color(238, 240, 242):sf::Color(162, 153, 158));
+            shape.setPosition(c*100, r*100);
+            background.push_back(shape);
+        }
+    }
+//       load all bugs images
+    if(!crawlerTexture.loadFromFile("images/crawler.png")){cout << "Error loading image for crawler" << endl;}
+    if(!hopperTexture.loadFromFile("images/hopper.png")){cout << "Error loading image for hopper" << endl;}
+    if(!sliderTexture.loadFromFile("images/slider.png")){cout << "Error loading image for slider" << endl;}
+    if(!superBugTexture.loadFromFile("images/superbug.png")){cout << "Error loading image for superbuh" << endl;}
+}
+
 void Board::drawBoard(sf::RenderWindow &window) {
     for(sf::RectangleShape &r : background){
         window.draw(r);

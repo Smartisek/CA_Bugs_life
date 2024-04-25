@@ -9,7 +9,7 @@
 
 class SuperBug : public Crawler {
     public:
-    SuperBug(int id, int x, int y, Direction direction, int size) : Crawler(id, x, y, direction, size){};
+    SuperBug(int id, int x, int y, Direction direction, int size);
     string getType() const override;
     void move(){};
     void moveUp();

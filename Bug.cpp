@@ -4,6 +4,8 @@
 
 #include "Bug.h"
 
+Bug::Bug(int id, int x, int y, Direction direction, int size) : id(id), position(x,y), direction(direction), size(size), alive(true){}; //constructor
+
 int Bug::getId() const{
     return id;
 }
@@ -57,9 +59,9 @@ void Bug::setSize(int size){
 
 }
 
-list<pair<int,int>> Bug::getPathTaken() const{
-    return path;
-}
+//list<pair<int,int>> Bug::getPathTaken() const{
+//    return path;
+//}
 
 string Bug::printPath(){
 //    create a string that will get id of the bug, his type and then loop through it's path that is being added inside setPosition();
