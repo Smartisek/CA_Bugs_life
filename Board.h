@@ -39,6 +39,7 @@ public:
     void searchForBug(vector<Bug*> &bugs);
     vector<Bug*> loadBugsFromFile();
     void printCells(vector<Bug*> &bugs);
+
 };
 
 

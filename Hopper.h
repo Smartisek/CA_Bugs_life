@@ -8,8 +8,6 @@
 
 
 class Hopper : public Bug {
-private:
-    int hopLength;
 
 public:
     Hopper(int id, int x, int y, Direction direction, int size, int hop) : Bug(id, x, y, direction, size){ hopLength = hop;} // constructor
@@ -18,6 +16,8 @@ public:
     string getType() const override{
         return "Hopper";
     }
+private:
+    int hopLength;
     void move() override{
         pair<int,int> newPosition = getPosition();
 //        when way is blocked meaning bug is on the edge, randomly select new direction

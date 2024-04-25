@@ -13,7 +13,7 @@ public:
     string getType() const override{
         return "Slider";
     }
-
+private:
     void move() override {
         pair<int, int> newPosition = getPosition();
 //        when way is blocked meaning bug is on the edge, randomly select new direction

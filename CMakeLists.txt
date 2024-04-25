@@ -15,7 +15,10 @@ add_executable(sfml_002 main.cpp
         Slider.h
         Slider.cpp
         MainMenu.h
-        MainMenu.cpp)
+        MainMenu.cpp
+        SuperBug.h
+        SuperBug.cpp
+)
 
 set(SFML_STATIC_LIBRARIES TRUE)
 set(SFML_DIR C:/SFML-2.6.1/lib/cmake/SFML)

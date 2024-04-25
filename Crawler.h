@@ -15,7 +15,7 @@ Crawler(int id, int x, int y, Direction direction, int size) : Bug(id, x, y, dir
 string getType() const override{
     return "Crawler";
 }
-
+private:
 void move() override {
     pair<int, int> newPosition = getPosition();
 

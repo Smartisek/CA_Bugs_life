@@ -4,6 +4,7 @@
 #include "vector"
 #include "Board.h"
 #include "MainMenu.h"
+#include "SuperBug.h"
 using namespace std;
 using namespace sf;
 
@@ -11,15 +12,19 @@ using namespace sf;
 int main() {
     Board board; //instance of a board class
     vector<Bug*> bugs = board.loadBugsFromFile(); //creating a vector with reference of type pointer to Bug, meaning it can point to any derived class like hopper and crawler
+    auto* superBug = new SuperBug(110, 5, 5, Direction::NORTH, 3);
+    bugs.push_back(superBug);
     bool messagePrinted = false; // for stopping printing ton of messages a second when collision
     bool gameStarted = false; //boolean for starting the game
     bool aboutPressed = false;  //boolean for option menu
+    bool superBugMove = false;
     int aliveBugs; //int to keep track of how many bugs are alive, to be able to check when there is only one left
 ////         functionality for searching for bug inside of board
 //        board.searchForBug(bugs);
-        board.printCells(bugs);
+    board.printCells(bugs);
 
     RenderWindow window(VideoMode(1000.00, 1000.00), "Bugs Life!"); //create the window
+    window.setKeyRepeatEnabled(false);
     MainMenu menu(window.getSize().x, window.getSize().y); //create main menu instance
     Clock clock; //this will start clock
     Time timeSinceLastUpdate = Time::Zero; // variable for keeping track of how much time passed, when created zero
@@ -40,6 +45,7 @@ int main() {
 //                    reset messagePrinted variable to false when clicked so the areInTheSameCell() check is possible again, this variable makes sure
 //                    the message is not printed constantly until they move out
             messagePrinted = false;
+            superBugMove = true;
         }
 
 
@@ -84,6 +90,27 @@ int main() {
                 }
             }
         }
+
+        if(gameStarted && superBugMove && superBug->getStatus() == "Alive"){
+            if(Keyboard::isKeyPressed(Keyboard::Up)){
+                cout << "MOVED UP" << endl;
+                superBug->moveUp();
+                superBugMove = false;
+            } else if(Keyboard::isKeyPressed(Keyboard::Down)){
+                cout << "MOVED DOWN" << endl;
+                superBug->moveDown();
+                superBugMove = false;
+            } else if(Keyboard::isKeyPressed(Keyboard::Left)){
+                cout << "MOVED LEFT" << endl;
+                superBug->moveLeft();
+                superBugMove = false;
+            } else if(Keyboard::isKeyPressed(Keyboard::Right)){
+                cout << "MOVED RIGHT" << endl;
+                superBug->moveRight();
+                superBugMove = false;
+            }
+        }
+
         window.clear();
         if(!gameStarted && !aboutPressed){ //when game has not started yet draw the menu
             menu.MenuDraw(window);
@@ -97,7 +124,32 @@ int main() {
         if(aliveBugs == 1){ //when there is only one alive bring final page with last standing bug information
             menu.finalPage(window, bugs);
         }
+
+//        Event superInput;
+//        while (window.pollEvent(superInput)){
+//            if (superInput.type == sf::Event::KeyReleased) {
+//                switch (superInput.key.code) {
+//                    case sf::Keyboard::Up:
+//                        cout << " UP MOVE" << endl;
+//                        superBug->moveUp();
+//                        break;
+//                    case sf::Keyboard::Down:
+//                        superBug->moveDown();
+//                        break;
+//                    case sf::Keyboard::Left:
+//                        superBug->moveLeft();
+//                        break;
+//                    case sf::Keyboard::Right:
+//                        superBug->moveRight();
+//                        break;
+//                    default:
+//                        break;
+//                }
+//            }
+//        }
+
         window.display(); //display all
+
     }
 // since in the beginning we are creating new bugs (NEW) allocating on the HEAP then we need to clear afterwards and delete existing pointers
     for(Bug* bug : bugs){
