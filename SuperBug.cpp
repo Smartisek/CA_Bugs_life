@@ -6,7 +6,7 @@
 
 
 string SuperBug::getType() const {
-    return "Crawler";
+    return "Superbug";
 }
 
 void SuperBug::moveUp() {

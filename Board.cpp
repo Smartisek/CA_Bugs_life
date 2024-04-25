@@ -27,6 +27,8 @@ void Board::drawBugs(const vector<Bug *>& bugs, sf::RenderWindow &window) {
             bugSprite.setTexture(hopperTexture);
         } else if(bug->getType() == "Slider"){
             bugSprite.setTexture(sliderTexture);
+        } else if(bug->getType() == "Superbug"){
+            bugSprite.setTexture(superBugTexture);
         }
         bugSprite.setOrigin(bugSprite.getGlobalBounds().width/2.0f, bugSprite.getGlobalBounds().height /2.0f); //center the image
         bugSprite.setScale(scale, scale); //set scale for image

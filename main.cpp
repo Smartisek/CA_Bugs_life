@@ -17,7 +17,7 @@ int main() {
     bool messagePrinted = false; // for stopping printing ton of messages a second when collision
     bool gameStarted = false; //boolean for starting the game
     bool aboutPressed = false;  //boolean for option menu
-    bool superBugMove = false;
+    bool superBugMove = false; //boolean for moving superBug
     int aliveBugs; //int to keep track of how many bugs are alive, to be able to check when there is only one left
 ////         functionality for searching for bug inside of board
 //        board.searchForBug(bugs);
@@ -42,9 +42,11 @@ int main() {
                     bug->move();
                 }
             }
-//                    reset messagePrinted variable to false when clicked so the areInTheSameCell() check is possible again, this variable makes sure
-//                    the message is not printed constantly until they move out
+//      reset messagePrinted variable to false when clicked so the areInTheSameCell() check is possible again, this variable makes sure
+//      the message is not printed constantly until they move out
             messagePrinted = false;
+//      set the boolean for super bug true meaning now it can move, so every one second, if we did not have this check, the bug would jump many times at once when arrow pressed
+//      this just gives us the control over it and jump together with other bugs at the same time
             superBugMove = true;
         }
 
@@ -90,7 +92,8 @@ int main() {
                 }
             }
         }
-
+//  whenever game starts, super bug is alive and can move, check for if the arrow is pressed, I am using these if statements because when I used the event type with window poll event as above, the arrow had to be pressed
+//  at exact time, the check for when it is pressed was not precise and it took many pressed till the bugged moved, this way any time the arrow is pressed the code knows right away
         if(gameStarted && superBugMove && superBug->getStatus() == "Alive"){
             if(Keyboard::isKeyPressed(Keyboard::Up)){
                 cout << "MOVED UP" << endl;
@@ -124,29 +127,6 @@ int main() {
         if(aliveBugs == 1){ //when there is only one alive bring final page with last standing bug information
             menu.finalPage(window, bugs);
         }
-
-//        Event superInput;
-//        while (window.pollEvent(superInput)){
-//            if (superInput.type == sf::Event::KeyReleased) {
-//                switch (superInput.key.code) {
-//                    case sf::Keyboard::Up:
-//                        cout << " UP MOVE" << endl;
-//                        superBug->moveUp();
-//                        break;
-//                    case sf::Keyboard::Down:
-//                        superBug->moveDown();
-//                        break;
-//                    case sf::Keyboard::Left:
-//                        superBug->moveLeft();
-//                        break;
-//                    case sf::Keyboard::Right:
-//                        superBug->moveRight();
-//                        break;
-//                    default:
-//                        break;
-//                }
-//            }
-//        }
 
         window.display(); //display all
 

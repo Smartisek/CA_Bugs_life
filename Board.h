@@ -12,6 +12,7 @@ class Board {
     sf::Texture crawlerTexture; //textures for drawing bugs
     sf::Texture hopperTexture;
     sf::Texture sliderTexture;
+    sf::Texture superBugTexture;
 private:
     int size = 10;
     std::vector<sf::RectangleShape> background;
@@ -28,9 +29,10 @@ public:
             }
         }
 //       load all bugs images
-        if(!crawlerTexture.loadFromFile("images/crawler.png")){cout << "Error loading image for Crawler" << endl;}
+        if(!crawlerTexture.loadFromFile("images/crawler.png")){cout << "Error loading image for crawler" << endl;}
         if(!hopperTexture.loadFromFile("images/hopper.png")){cout << "Error loading image for hopper" << endl;}
         if(!sliderTexture.loadFromFile("images/slider.png")){cout << "Error loading image for slider" << endl;}
+        if(!superBugTexture.loadFromFile("images/superbug.png")){cout << "Error loading image for superbuh" << endl;}
     }
     void drawBoard(sf::RenderWindow &window);
     void drawBugs(const vector<Bug*>& bugs, sf::RenderWindow &window);
