@@ -124,35 +124,30 @@ bool Bug::areInSameCell(const Bug& bug1,const Bug& bug2){
 
 void Bug::eat(vector<Bug*> &bugs){
     for(int i=0; i<bugs.size();i++){
-        bool erased = false; //helps to prevent unnecessary comparisons by skipping already erased bugs
+        bool erased = false; //helps to prevent unnecessary comparisons by skipping already erased bugs because in my code I do not remove eaten bugs from vector, rather I change their status to dead
+//        nested for loop for comparing bugs against each other
         for(int j=0;j<bugs.size() && !erased;j++){
-            if(i!=j && areInSameCell(*bugs[i], *bugs[j])){
-                if(bugs[i]->getSize() > bugs[j]->getSize()){
-//                    cout << "Size before: " << bugs[i]->getSize() << endl;
-//                   cout << "Eat " << bugs[j]->getId() << "size: " << bugs[j]->getSize() << " , " << bugs[i]->getId() << " is bigger:" << bugs[i]->getSize() <<endl;
-                    bugs[i]->setSize(bugs[i]->getSize() + bugs[j]->getSize());
-//                   cout << "Size after: " << bugs[i]->getSize() << endl;
-                    bugs[j]->setStatus(false);
-                    bugs[j]->isEatenBy = bugs[i]->getId();
-                    erased = true;
+            if(i!=j && areInSameCell(*bugs[i], *bugs[j])){ //when bugs aren't the same and are in the same cell do below
+                if(bugs[i]->getSize() > bugs[j]->getSize()){ //bug i is bigger then bug j
+                    bugs[i]->setSize(bugs[i]->getSize() + bugs[j]->getSize()); //increase bug i size by the size of eaten bug
+                    bugs[j]->setStatus(false); //weaker bug is eaten so we set status to false meaning it is dead
+                    bugs[j]->isEatenBy = bugs[i]->getId(); //inside bugs constructor we have int for isEatenBy so we push id of stronger bug into eaten bugs variable
+                    erased = true; //set erased to true so the program does only one task instead of many more
                 } else if(bugs[j]->getSize() > bugs[i]->getSize()){
-//                    cout << "Size before: " << bugs[j]->getSize() << endl;
-//                    cout << "Eat " << bugs[i]->getId() << "size: " << bugs[i]->getSize() << " , " << bugs[j]->getId() << " is bigger:" << bugs[j]->getSize() <<endl;
                     bugs[j]->setSize(bugs[j]->getSize() + bugs[i]->getSize());
-//                    cout << "Size after: " << bugs[i]->getSize() << endl;
                     bugs[i]->setStatus(false);
                     bugs[i]->isEatenBy = bugs[j]->getId();
                     erased = true;
-                } else if(bugs[i]->getSize() == bugs[j]->getSize()){ //in case the bugs are the same size, pick randomly who wins 
-                    int randomNum = rand()%2;
+                } else if(bugs[i]->getSize() == bugs[j]->getSize()){ //in case the bugs are the same size, pick randomly who wins
+                    int randomNum = rand()%2; //get random number between 0 and 1 and then same logic as above
                     switch (randomNum) {
-                        case 1:
+                        case 0:
                             bugs[i]->setSize(bugs[i]->getSize() + bugs[j]->getSize());
                             bugs[j]->setStatus(false);
                             bugs[j]->isEatenBy = bugs[i]->getId();
                             erased = true;
                             break;
-                        case 2:
+                        case 1:
                             bugs[j]->setSize(bugs[j]->getSize() + bugs[i]->getSize());
                             bugs[i]->setStatus(false);
                             bugs[i]->isEatenBy = bugs[j]->getId();
