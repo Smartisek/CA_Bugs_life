@@ -12,7 +12,7 @@ using namespace sf;
 
 
 int main() {
-    Board board; //instance of a board class
+    Board board; //initialize a board class
     vector<Bug*> bugs = Board::loadBugsFromFile(); //creating a vector with reference of type pointer to Bug, meaning it can point to any derived class like hopper and crawler
     auto* superBug = new SuperBug(110, 5, 5, Direction::NORTH, 3); //initialize super bug and push it into vector
     bugs.push_back(superBug);
@@ -103,19 +103,15 @@ int main() {
 //  at exact time, the check for when it is pressed was not precise and it took many pressed till the bugged moved, this way any time the arrow is pressed the code knows right away
         if(gameStarted && superBugMove && superBug->getStatus() == "Alive"){
             if(Keyboard::isKeyPressed(Keyboard::Up)){
-                cout << "MOVED UP" << endl;
                 superBug->moveUp();
                 superBugMove = false;
             } else if(Keyboard::isKeyPressed(Keyboard::Down)){
-                cout << "MOVED DOWN" << endl;
                 superBug->moveDown();
                 superBugMove = false;
             } else if(Keyboard::isKeyPressed(Keyboard::Left)){
-                cout << "MOVED LEFT" << endl;
                 superBug->moveLeft();
                 superBugMove = false;
             } else if(Keyboard::isKeyPressed(Keyboard::Right)){
-                cout << "MOVED RIGHT" << endl;
                 superBug->moveRight();
                 superBugMove = false;
             }
@@ -138,7 +134,7 @@ int main() {
         window.display(); //display all
 
     }
-// since in the beginning we are creating new bugs (NEW) allocating on the HEAP then we need to clear afterward and delete existing pointers
+// since in the beginning we are creating new bugs (NEW) allocating on the HEAP then we need to clear afterward and delete existing pointers, this goes for superbug aswell as he is inside of the vector
     for(Bug* bug : bugs){
         delete bug;
     }

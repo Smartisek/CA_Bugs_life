@@ -58,52 +58,6 @@ void Board::drawBugs(const vector<Bug *>& bugs, sf::RenderWindow &window) {
     }
 }
 
-void Board::eat(vector<Bug*> &bugs, bool &messagePrinted){
-    //        Check for if more bugs are in the same cell, two for each loops going through bugs vector
-    for(Bug* bug1 : bugs){
-        for(Bug* bug2 : bugs){
-//                make sure the function is not checking if bug is itself in the same cell
-            if(bug1 != bug2){
-//                    if they are in the same cell and message has not been printed before print a message and set messagePrinted variable to true so the condition cannot be met again
-//                     this way we do not get ton of messages when bugs are in the same cell but only one message
-                if(Bug::areInSameCell(*bug1, *bug2) && !messagePrinted){
-                    cout << "Bugs " << bug1->getId() << " and " << bug2->getId() << " in the same cell: " << bug1->positionToString(bug1->getPosition()) << endl;
-                    Bug::eat(bugs);
-                    messagePrinted = true;
-                }
-            }
-
-        }
-    }
-}
-
-// function that saves path taken and passes it into our file .out
-void Board::printFileLifePath(vector<Bug*> &bugs){
-    ofstream fout("bugs_life_history_date_time.out");
-//    check if the file is open and if it is go through bugs and pass their path into the file
-    if(fout){
-        for(auto &pos : bugs){
-            fout << pos->printPath();
-        }
-//        after close the file
-        fout.close();
-//        if it does not open get error message
-    } else{
-        cout << "Unable to open file." << endl;
-    }
-}
-
-void Board::searchForBug(vector<Bug*> &bugs){
-    cout << "Enter bugs ID: ";
-    int bugId;
-    cin >> bugId; // get users input bugs id
-    for(Bug* bug : bugs){ //go through bugs and find bug with that id
-        if(bug->getId() == bugId){
-            cout << bug->printBug() << endl; //print the bugs information
-        }
-    }
-}
-
 vector<Bug*> Board::loadBugsFromFile(){
     vector<Bug*> bugs; //create vector bugs with pointer to bugs
     ifstream bugFile("bugs.txt"); //open the file
@@ -149,6 +103,52 @@ vector<Bug*> Board::loadBugsFromFile(){
         cout << bugs[i]->printBug() << endl;
     }
     return bugs;
+}
+
+void Board::eat(vector<Bug*> &bugs, bool &messagePrinted){
+    //        Check for if more bugs are in the same cell, two for each loops going through bugs vector
+    for(Bug* bug1 : bugs){
+        for(Bug* bug2 : bugs){
+//                make sure the function is not checking if bug is itself in the same cell
+            if(bug1 != bug2){
+//                    if they are in the same cell and message has not been printed before print a message and set messagePrinted variable to true so the condition cannot be met again
+//                     this way we do not get ton of messages when bugs are in the same cell but only one message
+                if(Bug::areInSameCell(*bug1, *bug2) && !messagePrinted){
+                    cout << "Bugs " << bug1->getId() << " and " << bug2->getId() << " in the same cell: " << bug1->positionToString(bug1->getPosition()) << endl;
+                    Bug::eat(bugs);
+                    messagePrinted = true;
+                }
+            }
+
+        }
+    }
+}
+
+// function that saves path taken and passes it into our file .out
+void Board::printFileLifePath(vector<Bug*> &bugs){
+    ofstream fout("bugs_life_history_date_time.out");
+//    check if the file is open and if it is go through bugs and pass their path into the file
+    if(fout){
+        for(auto &pos : bugs){
+            fout << pos->printPath();
+        }
+//        after close the file
+        fout.close();
+//        if it does not open get error message
+    } else{
+        cout << "Unable to open file." << endl;
+    }
+}
+
+void Board::searchForBug(vector<Bug*> &bugs){
+    cout << "Enter bugs ID: ";
+    int bugId;
+    cin >> bugId; // get users input bugs id
+    for(Bug* bug : bugs){ //go through bugs and find bug with that id
+        if(bug->getId() == bugId){
+            cout << bug->printBug() << endl; //print the bugs information
+        }
+    }
 }
 
 void Board::printCells(vector<Bug*> &bugs) const{

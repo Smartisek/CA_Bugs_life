@@ -27,7 +27,6 @@ string Bug::getStatus() const {
     }
 }
 
-
 string Bug::positionToString(pair<int,int> position){
     return "(" + to_string(position.first) + "," + to_string(position.second) + ")";
 }
@@ -58,10 +57,6 @@ void Bug::setSize(int size){
     }
 
 }
-
-//list<pair<int,int>> Bug::getPathTaken() const{
-//    return path;
-//}
 
 string Bug::printPath(){
 //    create a string that will get id of the bug, his type and then loop through it's path that is being added inside setPosition();
